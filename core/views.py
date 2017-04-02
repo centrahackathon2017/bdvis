@@ -35,15 +35,22 @@ def get_businesses(request):
 def get_facilities(request):
    
     if request.method == 'GET':
-
-        facility_type = request.GET.getlist('facility_type')
-        
+        facility_type = request.GET.getlist('facility_type')      
         fac=[]
         for t in facility_type:
-            fac.extend(Poi.objects.filter(category=t))
-
-        
+            fac.extend(Poi.objects.filter(category=t))  
+            
         output = [{'name':x.name,'location':x.location,'type':x.category} for x in fac]
+        return JsonResponse({"output": output})
+    else:
+        return None 
+        
+        
+def get_parkings(request):
+   
+    if request.method == 'GET':
+        park = Parking.objects.all()
+        output = [{'location':x.locations,'type':x.category} for x in park]
         return JsonResponse({"output": output})
     else:
         return None  

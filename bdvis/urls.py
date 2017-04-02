@@ -25,5 +25,6 @@ urlpatterns = [
     url(r'^$', core.views.index, name='index'),
     url(r'^api/example$', core.views.example_json_response, name='example_json_response'),
     url(r'^api/get_businesses$', core.views.get_businesses),
-    url(r'^api/get_facilities$', core.views.get_facilities)
+    url(r'^api/get_facilities$', core.views.get_facilities),
+    url(r'^api/get_parkings$', core.views.get_parkings)
 ]
