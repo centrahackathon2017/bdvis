@@ -13,7 +13,7 @@ for i in range(2):
     for row in data:
         try:
             name = row["stop_name"]
-            location = "{%s,%s}" % (row["the_geom"]["coordinates"][0], row["the_geom"]["coordinates"][1])
+            location = "[%s,%s]" % (row["the_geom"]["coordinates"][0], row["the_geom"]["coordinates"][1])
 
             # print name
             # print location

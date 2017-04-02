@@ -20,7 +20,7 @@ for i in range(7):
             mailing_address = row["mailing_address"]
             business_phone = row["business_phone"]
             email = row["email"]
-            location = "{%s,%s}" % (row["location"]["latitude"], row["location"]["longitude"])
+            location = "[%s,%s]" % (row["location"]["latitude"], row["location"]["longitude"])
 
             if not DRY_RUN:
                 from core.models import Business
