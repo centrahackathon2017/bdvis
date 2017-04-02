@@ -1,1 +1,159 @@
-<h1>Goodbye, sad world!</h1>
+<html>
+    <head>
+        <title></title>
+        <meta charset="utf-8"/>
+        <link rel="stylesheet" href="../static/css/style.css">
+        <link rel="stylesheet" href="../static/css/material.min.css"/>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"/>
+    </head>
+    <body>
+        <section id="leftpanel">
+            <header class="header">Gainesville</header>
+            <section class="business">
+                <article>Business</article>
+                <input list="business" name="business" placeholder="All businesses">
+                <datalist id="business">
+                    <option value="A">
+                    <option value="B">
+                    <option value="C">
+                </datalist>
+                <div class="wraplist">
+                    <div class="chip">
+                        <span class="chiptext">ENGINEER</span>
+                        <img class="chipicon" src="../static/img/ic_clear_white.svg"/>
+                    </div>
+                    <div class="chip">
+                        <span class="chiptext">ENGINEER</span>
+                        <img class="chipicon" src="../static/img/ic_clear_white.svg"/>
+                    </div>
+                    <div class="chip">
+                        <span class="chiptext">ENGINEER</span>
+                        <img class="chipicon" src="../static/img/ic_clear_white.svg"/>
+                    </div>
+                    <div class="chip">
+                        <span class="chiptext">ENGINEER</span>
+                        <img class="chipicon" src="../static/img/ic_clear_white.svg"/>
+                    </div>
+                    <div class="chip">
+                        <span class="chiptext">ENGINEER</span>
+                        <img class="chipicon" src="../static/img/ic_clear_white.svg"/>
+                    </div>
+                    <div class="chip">
+                        <span class="chiptext">ENGINEER</span>
+                        <img class="chipicon" src="../static/img/ic_clear_white.svg"/>
+                    </div>
+                </div>
+            </section>
+            <div class="line"></div>
+            <section class="facillities">
+                <article>Facilities</article>
+                <div class="wrap">
+                    <div>
+                        <div class="btn--circle btn--public"><img class="icon icon--public" src="../static/img/public_park.png"></div>
+                        <div class="subtext text--public">Public parks</div>
+                    </div>
+                    <div>
+                        <div class="btn--circle btn--fire"><img class="icon icon--fire" src="../static/img/fire_station.png"></div>
+                        <div class="subtext text--fire">Fire stations</div>
+                    </div>
+                    <div>
+                        <div class="btn--circle btn--bus"><img class="icon icon--bus" src="../static/img/bus_stop.png"></div>
+                        <div class="subtext text--bus">Bus stops</div>
+                    </div>
+                    <div>
+                        <div class="btn--circle btn--parkings"><img class="icon icon--parkings" src="../static/img/parkings.png"></div>
+                        <div class="subtext text--parkings">Parkings</div>
+                    </div>
+                <div>
+            </section>
+            <div class="line"></div>
+            <section class="population">
+                <article>Population Density</article>
+                <div class="span">
+                    <img class="age ageicon" src='../static/img/ic_add.svg' width="20">
+                    <span class="age">Age</span>
+                    <select class="agespan list" style="display: none">
+                        <option value="">A</option>
+                        <option value="">A</option>
+                        <option value="">A</option>
+                    </select>
+                </div>
+                <div  class="span">
+                    <img class="genders gendersicon" src='../static/img/ic_add.svg' width="20">
+                    <span class="genders">Gender</span>
+                    <div class="wrap wrap--gender gendersspan" style='display: none;'>
+                        <div>
+                            <div class="btn--circle btn--male"><img class="icon icon--male" src="../static/img/male.png"></div>
+                            <div class="subtext text--male">Male</div>
+                        </div>
+                        <div>
+                            <div class="btn--circle btn--female"><img class="icon icon--female" src="../static/img/female.png"></div>
+                            <div class="subtext text--female">Female</div>
+                        </div>
+                        <div>
+                            <div class="btn--circle btn--both"><img class="icon icon--both" src="../static/img/both.png"></div>
+                            <div class="subtext text--both">Other</div>
+                        </div>
+                    </div>
+                </div>
+                <div  class="span">
+                    <img class="gender gendericon" src='../static/img/ic_add.svg' width="20">
+                    <span class=gender >Occupation</span>
+                    <select class="genderspan list" style="display: none">
+                        <option value="">A</option>
+                        <option value="">A</option>
+                        <option value="">A</option>
+                    </select>
+                </div>
+                <div  class="span">
+                    <img class="education educationicon"src='../static/img/ic_add.svg' width="20">
+                    <span class="education">Education level</span>
+                    <select class="educationspan list" style="display: none">
+                        <option value="">A</option>
+                        <option value="">A</option>
+                        <option value="">A</option>
+                    </select>
+                </div>
+                <div  class="span">
+                    <img class="national nationalicon" src='../static/img/ic_add.svg' width="20">
+                    <span class="national">Nationality</span>
+                    <select class="nationalspan list" style="display: none">
+                        <option value="">A</option>
+                        <option value="">A</option>
+                        <option value="">A</option>
+                    </select>
+                </div>
+            </section>
+            <div class="line"></div>
+            <section class="zone">
+                <article>
+                    <span>Zoning</span>
+                </article>
+                <select class="zoning">
+                    <option value="">A</option>
+                    <option value="">A</option>
+                    <option value="">A</option>
+                </select>
+            </section>
+        </section>
+
+        <section id="rightpanel">
+            <header class="header">
+                <span>Your position</span>
+                <i  class="material-icons close">clear</i>
+            </header>
+            <div class="labellat">
+                <div class="col1">Lat: </div><div class="col2">11.111</div>
+            </div>
+            <div class="labellng">
+                <div class="col1">Lng: </div><div class="col2">11.111</div>
+            </div>
+        </section>
+        <section id="map"></section>
+
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCRmEUUVnLQasEnm_w5tK06uUJxvtwaclM"></script>
+        <script src="../static/js/material.min.js"></script>
+        <script src="../static/js/jquery-3.2.0.min.js"></script>
+        <script src="../static/js/mapControl.js"></script>
+    </body>
+</html>
