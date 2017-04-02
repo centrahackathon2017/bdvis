@@ -189,5 +189,18 @@ for zipcode in zipcodes:
             incomes_75000_99999=values["$75,000 to $99,999"],
             incomes_100000_149999=values["$100,000 to $149,999"],
             incomes_150000_199999=values["$150,000 to $199,999"],
-            incomes_over_200000=values["$200,000 or more"]
+            incomes_over_200000=values["$200,000 or more"],
+            industry_agriculture=values["Agriculture, forestry, fishing and hunting, and mining"],
+            industry_construction=values["Construction"],
+            industry_manufacturing=values["Manufacturing"],
+            industry_wholesale=values["Wholesale trade"],
+            industry_retail=values["Retail trade"],
+            industry_transportion=values["Transportation and warehousing, and utilities"],
+            industry_information=values["Information"],
+            industry_financial=values["Finance, insurance, real estate, and rental and leasing"],
+            industry_professional=values["Professional, scientific, management, administrative, and waste management services"],
+            industry_social=values["Educational, health and social services"],
+            industry_arts=values["Arts, entertainment, recreation, accommodation and food services"],
+            industry_other=values["Other services (except public administration)"],
+            industry_public=values["Public administration"]
         ).save()
