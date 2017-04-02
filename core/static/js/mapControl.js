@@ -36,7 +36,7 @@ function getLng(input){
 
 function queryBusinessData(name){
     $.ajax({
-        url: 'http://127.0.0.1:8000/api/get_businesses',
+        url: '/api/get_businesses',
         type: 'get',
         data: {business_type:name},
         cache: false,
@@ -77,7 +77,7 @@ function queryBusinessData(name){
 
 function queryAge(name){
     $.ajax({
-        url: 'http://127.0.0.1:8000/api/get_businesses',
+        url: '/api/get_businesses',
         type: 'get',
         data: {business_type:name},
         cache: false,
