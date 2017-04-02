@@ -25,7 +25,7 @@ SECRET_KEY = 'o7#b(bpie9(8ku7$7$w!26f3^7-1tb4s^t6^5xeyk@wkap=#b0'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["centrahack01.acis.ufl.edu"]
 
 
 # Application definition
