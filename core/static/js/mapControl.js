@@ -1,3 +1,5 @@
+
+
 var mapOptions = {
   zoom: 11,
   center: {lat: 29.6508888, lng: -82.3242248},
@@ -54,6 +56,7 @@ function onBusinessChange(event){
 
 function onEnterCircle(node){
   $(node).css("color","#80cbc4")
+
 }
 function onLeaveCircle(node){
   $(node).css("color","#D7D5D5")
@@ -255,3 +258,285 @@ $('.national').click(function(){
     list[4] = 0
   }
 })
+
+
+//---Bam
+var parkMarker=[];
+var publicParkAmount = 0;
+var parkLat = [];
+var parkLng = [];
+var parkType = [];
+var parkName = [];
+var showParkStatus = false;
+
+$('.btn--public').click(function(){
+
+    if(showParkStatus==false){
+        $.ajax({
+            url: '/api/get_facilities?facility_type=PARK',
+            type: 'GET',
+            datatype: 'json',
+            crossDomain: true ,
+            success:  function(result){
+
+                publicParkAmount=result.output.length-1;
+
+                //get resource descriptions
+                for(var i=0; i<publicParkAmount; i++){
+                    //main information
+                    parkType[i] = result.output[i].type;
+                    parkName[i] = result.output[i].name;
+                    loc = JSON.parse(result.output[i].location);
+                    parkLat[i] = loc[1];
+                    parkLng[i] = loc[0];
+                }
+                showParkMarker();
+                showParkStatus = true;
+            },
+            error:function(xhr,status){
+                console.log(status);
+            }
+          }); 
+
+      }else{
+        
+        hideParkMarker();
+        showParkStatus = false;
+      }
+    
+});
+
+
+
+function showParkMarker(){
+  var image = '../static/img/park.png';
+    for(var i=0;i<publicParkAmount;i++){
+      myLatLng = {lat: parkLat[i], lng: parkLng[i]};
+      parkMarker[i] = new google.maps.Marker({
+            position: myLatLng,
+            map: map,
+            icon: image
+          });
+    }
+    
+}
+
+function hideParkMarker(){
+    for(var i=0;i<publicParkAmount;i++){
+      parkMarker[i].setMap(null);
+      parkMarker[i] = null;
+
+    }
+    publicParkAmount=0;
+}
+
+var fireMarker=[];
+var fireAmount = 0;
+var fireLat = [];
+var fireLng = [];
+var fireType = [];
+var fireName = [];
+var showFireStatus = false;
+
+
+$('.btn--fire').click(function(){
+
+    if(showFireStatus==false){
+        $.ajax({
+            url: '/api/get_facilities?facility_type=FIRE STATION',
+            type: 'GET',
+            datatype: 'json',
+            crossDomain: true ,
+            success:  function(result){
+
+                fireAmount=result.output.length-1;
+
+                //get resource descriptions
+                for(var i=0; i<fireAmount; i++){
+                    //main information
+                    fireType[i] = result.output[i].type;
+                    fireName[i] = result.output[i].name;
+                    loc = JSON.parse(result.output[i].location);
+                    fireLat[i] = loc[1];
+                    fireLng[i] = loc[0];
+                }
+                showFireMarker();
+                showFireStatus = true;
+            },
+            error:function(xhr,status){
+                console.log(status);
+            }
+          }); 
+
+      }else{
+        
+        hideFireMarker();
+        showFireStatus = false;
+      }
+    
+});
+
+
+
+function showFireMarker(){
+  var image = '../static/img/firestation.png';
+    for(var i=0;i<fireAmount;i++){
+      myLatLng = {lat: fireLat[i], lng: fireLng[i]};
+      fireMarker[i] = new google.maps.Marker({
+            position: myLatLng,
+            map: map,
+            icon: image
+          });
+    }
+    
+}
+
+function hideFireMarker(){
+    for(var i=0;i<fireAmount;i++){
+      fireMarker[i].setMap(null);
+      fireMarker[i] = null;
+
+    }
+    fireAmount=0;
+}
+
+
+var busMarker=[];
+var busAmount = 0;
+var busLat = [];
+var busLng = [];
+var busType = [];
+var busName = [];
+var showBusStatus = false;
+
+
+$('.btn--bus').click(function(){
+
+    if(showBusStatus==false){
+        $.ajax({
+            url: '/api/get_facilities?facility_type=BUS STOP',
+            type: 'GET',
+            datatype: 'json',
+            crossDomain: true ,
+            success:  function(result){
+
+                busAmount=result.output.length-1;
+
+                //get resource descriptions
+                for(var i=0; i<busAmount; i++){
+                    //main information
+                    busType[i] = result.output[i].type;
+                    busName[i] = result.output[i].name;
+                    loc = JSON.parse(result.output[i].location);
+                    busLat[i] = loc[1];
+                    busLng[i] = loc[0];
+                }
+                showBusMarker();
+                showBusStatus = true;
+            },
+            error:function(xhr,status){
+                console.log(status);
+            }
+          }); 
+
+      }else{
+        
+        hideBusMarker();
+        showBusStatus = false;
+      }
+    
+});
+
+
+
+function showBusMarker(){
+  var image = '../static/img/busstop.png';
+    for(var i=0;i<busAmount;i++){
+      myLatLng = {lat: busLat[i], lng: busLng[i]};
+      busMarker[i] = new google.maps.Marker({
+            position: myLatLng,
+            map: map,
+            icon: image
+          });
+    }
+    map.setZoom(13);
+    
+}
+
+function hideBusMarker(){
+    for(var i=0;i<busAmount;i++){
+      busMarker[i].setMap(null);
+      busMarker[i] = null;
+
+    }
+    busAmount=0;
+}
+
+
+
+var parkingAmount = 0;
+var showParkingAreaStatus = false;
+var p_type = [];
+var parkingArea = [];
+
+$('.btn--parkings').click(function(){
+
+    if(showParkingAreaStatus==false){
+        $.ajax({
+            url: '/api/get_parkings',
+            type: 'GET',
+            datatype: 'json',
+            crossDomain: true ,
+            success:  function(result){
+
+                parkingAmount=result.output.length-1;
+                console.log('amount'+parkingAmount);
+
+                for(var i=0;i<parkingAmount;i++){
+
+                    p_type[i] = result.output[i].type;
+                    console.log(typeof(p_type[i]));
+                    if(p_type[i]=="LOT"){
+                      //polygon
+                      var areaCoor = [];
+
+                      pathObj = JSON.parse(result.output[i].location)
+                      console.log(pathObj[i][0]);
+                      for(var i=0;i<pathObj.length;i++){
+                          areaCoor.push({lat: parseFloat(pathObj[i][1]), lng: parseFloat(pathObj[i][0])});
+                      
+                    }
+
+                      console.log(areaCoor);
+                      parkingArea[i] = new google.maps.Polygon({
+                        paths: areaCoor,
+                        strokeColor: '#FF0000',
+                        strokeOpacity: 0.8,
+                        strokeWeight: 2,
+                        fillColor: '#FF0000',
+                        fillOpacity: 0.35,
+                        map : map
+                      });
+                      
+                    }else{
+                      //line
+                    }
+                }
+                
+                showParkingArea();
+                showParkingAreaStatus = true;
+            },
+            error:function(xhr,status){
+                console.log(status);
+            }
+          }); 
+
+      }else{
+        
+        hideParkingArea();
+        showParkingAreaStatus = false;
+      }
+    
+});
+
+
