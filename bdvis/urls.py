@@ -23,4 +23,8 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     # url(r'^static/(?P<path>.*)$', django.contrib.staticfiles.views.serve),
     url(r'^$', core.views.index, name='index'),
+    url(r'^api/get_businesses$', core.views.get_businesses),
+    url(r'^api/get_facilities$', core.views.get_facilities),
+    url(r'^api/get_parkings$', core.views.get_parkings),
+    url(r'^api/get_zoning$', core.views.get_zoning)
 ]
