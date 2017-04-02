@@ -4,17 +4,67 @@ var mapOptions = {
   streetViewControl: false,
   mapTypeControl: false
 }
+var markerBusiness = []
 var map = new google.maps.Map(document.getElementById('map'), mapOptions);
 
-function queryData(){
+
+var dataBusiness = []
+var indexBusiness = []
+
+function getLatLng(input){
+      var data = input.split(',')
+      data[0] = data[0].replace('[','')
+      data[1] = data[1].replace(']','')
+      return {lat:parseFloat(data[0]),lng:parseFloat(data[1])}
+}
+
+function getLat(input){
+      var data = input.split(',')
+      data[0] = data[0].replace('[','')
+      data[1] = data[1].replace(']','')
+      return parseFloat(data[0])
+}
+
+function getLng(input){
+      var data = input.split(',')
+      data[0] = data[0].replace('[','')
+      data[1] = data[1].replace(']','')
+      return parseFloat(data[1])
+}
+
+function queryBusinessData(name){
     $.ajax({
-        url: 'https://vernity.com/HeartProTech_admin/get_doctor_chart_right.php',
+        url: 'http://127.0.0.1:8000/api/get_businesses',
         type: 'get',
-        data: {HN:'7777777'},
+        data: {business_type:name},
         cache: false,
         dataType: "json",
         success:  function(result){
-            console.log(result)
+          console.log(result)
+        if(result.output.length>0){
+            dataBusiness.push(result)
+
+            for(var i=0;i<result.output.length;i++){
+              var location = getLatLng(result.output[i].location)
+              var marker = new google.maps.Marker({
+                  position: location,
+                  map: map
+              });
+
+              var info = new google.maps.InfoWindow({
+                  content: '<section><div class="labellat"><div class="col1">Name: </div><div class="col2 name">'+result.output[i].name+'</div></div><div class="labellng"><div class="col1">Type: </div><div class="col2 type">'+result.output[i].type+'</div></div><div class="labellng"><div class="col1">Phone: </div><div class="col2 phone">'+result.output[i].phone+'</div></div><div class="labellng"><div class="col1">Address: </div><div class="col2 ">'+result.output[i].physical_address+'</div></div><div class="labellng"><div class="col1">Email: </div><div class="col2">'+result.output[i].email+'</div></div><div class="labellng"><div class="col1">Lat: </div><div class="col2">'+getLat(result.output[i].location)+'</div></div><div class="labellng"><div class="col1">Lng: </div><div class="col2">'+getLng(result.output[i].location)+'</div></div></section>'
+              });
+              marker.addListener('mouseover', function() {
+                  info.open(map,this)
+              });
+              marker.addListener('mouseout', function() {
+                  info.close()
+              });
+
+              markerBusiness.push(marker)
+            }
+        }  
+
         },
         error:function(xhr,status){
             console.log('query error'+status);
@@ -22,22 +72,27 @@ function queryData(){
     });
 }
 
-function closeChips(){
-  
+function closeChips(event){
+  $('#'+event).remove()
 }
 
-var all = false
+var all = false;
+var bid = 0;
 function onBusinessChange(event){
+  indexBusiness.push(event.value)
   if(event.value=='ALL'){
+    queryBusinessData('all');
     all = true
     $('.wraplist').html('');
-    $('.wraplist').prepend('<div class="chip"><span class="chiptext">ALL</span><img class="chipicon" src="../static/img/ic_clear_white.svg" onClick="closeChips(this)"/></div>');
+    $('.wraplist').prepend('<div id='+bid+' class="chip"><span class="chiptext">ALL</span><img class="chipicon" src="../static/img/ic_clear_white.svg" onClick="closeChips('+bid+')"/></div>');
   }else{
+    queryBusinessData(event.value);
     if(all==true){
        $('.wraplist').html('');
        all = false;
     }
-    $('.wraplist').prepend('<div id='+event.value+' class="chip"><span class="chiptext">'+event.value+'</span><img class="chipicon" src="../static/img/ic_clear_white.svg" /></div>');
+    $('.wraplist').prepend('<div id='+bid+' class="chip"><span class="chiptext">'+event.value+'</span><img class="chipicon" src="../static/img/ic_clear_white.svg" onClick="closeChips('+bid+')"/></div>');
+    bid++;
   }
 }
 
