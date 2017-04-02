@@ -1,7 +1,7 @@
 from sodapy import Socrata
 from datetime import datetime
 
-DRY_RUN = True
+DRY_RUN = False
 
 client = Socrata("data.cityofgainesville.org", None)
 
@@ -23,7 +23,7 @@ for i in range(1):
                 Poi(
                     category="PARK",
                     name=park,
-                    location=the_geom
+                    location=location
                 ).save()
                 counter += 1
 
