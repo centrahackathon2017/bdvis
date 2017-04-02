@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import JsonResponse, HttpResponse
-from models import Business, Poi, Parking, Zone
+from models import Business, Poi, Parking, Zone, Population
 
 
 def index(request):
@@ -135,3 +135,91 @@ def encode_zone(x):
         'UMU-2':'Urban Mixed-Use',
         'W':'Warehousing and Wholesaling'
     }[x]
+    
+
+def get_population_density(request):
+    if request.method == 'GET':
+        pop_type = request.GET.get('population_density_type')
+        p = Population.objects.all()
+        output = []
+        
+        if pop_type == 'age':
+            age_range = request.GET.get('age_range')
+            if age_range == 'age_under_5':
+                output = [{'amount':x.age_under_5,'zipcode':x.zipcode,'total_people':x.total_people,'locations':x.locations} for x in p]
+            elif age_range == 'age_5_9':
+                output = [{'amount':x.age_5_9,'zipcode':x.zipcode,'total_people':x.total_people,'locations':x.locations} for x in p]
+            elif age_range == 'age_10_14':
+                output = [{'amount':x.age_10_14,'zipcode':x.zipcode,'total_people':x.total_people,'locations':x.locations} for x in p]
+            elif age_range == 'age_15_19':
+                output = [{'amount':x.age_15_19,'zipcode':x.zipcode,'total_people':x.total_people,'locations':x.locations} for x in p]
+            elif age_range == 'age_20_24':
+                output = [{'amount':x.age_20_24,'zipcode':x.zipcode,'total_people':x.total_people,'locations':x.locations} for x in p]
+            elif age_range == 'age_25_34':
+                output = [{'amount':x.age_25_34,'zipcode':x.zipcode,'total_people':x.total_people,'locations':x.locations} for x in p]
+            elif age_range == 'age_35_44':
+                output = [{'amount':x.age_35_44,'zipcode':x.zipcode,'total_people':x.total_people,'locations':x.locations} for x in p]
+            elif age_range == 'age_45_54':
+                output = [{'amount':x.age_45_54,'zipcode':x.zipcode,'total_people':x.total_people,'locations':x.locations} for x in p]
+            elif age_range == 'age_55_59':
+                output = [{'amount':x.age_55_59,'zipcode':x.zipcode,'total_people':x.total_people,'locations':x.locations} for x in p]
+            elif age_range == 'age_60_64':
+                output = [{'amount':x.age_60_64,'zipcode':x.zipcode,'total_people':x.total_people,'locations':x.locations} for x in p]
+            elif age_range == 'age_65_74':
+                output = [{'amount':x.age_65_74,'zipcode':x.zipcode,'total_people':x.total_people,'locations':x.locations} for x in p]
+            elif age_range == 'age_75_84':
+                output = [{'amount':x.age_75_84,'zipcode':x.zipcode,'total_people':x.total_people,'locations':x.locations} for x in p]
+            else:
+                output = [{'amount':x.age_over_85,'zipcode':x.zipcode,'total_people':x.total_people,'locations':x.locations} for x in p]             
+        
+        elif pop_type == 'gender':
+            gender = request.GET.get('gender')
+            if gender == 'males':
+                output = [{'amount':x.males,'zipcode':x.zipcode,'total_people':x.total_people,'locations':x.locations} for x in p]
+            else:
+                output = [{'amount':x.females,'zipcode':x.zipcode,'total_people':x.total_people,'locations':x.locations} for x in p]
+        
+        elif pop_type == 'education':
+            education = request.GET.get('education')
+            if education == 'edu_9th_grade':
+                output = [{'amount':x.edu_9th_grade,'zipcode':x.zipcode,'total_people':x.total_people,'locations':x.locations} for x in p]
+            elif education == 'edu_12th_grade':
+                output = [{'amount':x.edu_12th_grade,'zipcode':x.zipcode,'total_people':x.total_people,'locations':x.locations} for x in p]
+            elif education == 'edu_high_school':
+                output = [{'amount':x.edu_high_school,'zipcode':x.zipcode,'total_people':x.total_people,'locations':x.locations} for x in p]
+            elif education == 'edu_college':
+                output = [{'amount':x.edu_college,'zipcode':x.zipcode,'total_people':x.total_people,'locations':x.locations} for x in p]
+            elif education == 'edu_associate':
+                output = [{'amount':x.edu_associate,'zipcode':x.zipcode,'total_people':x.total_people,'locations':x.locations} for x in p]
+            elif education == 'edu_bachelors':
+                output = [{'amount':x.edu_bachelors,'zipcode':x.zipcode,'total_people':x.total_people,'locations':x.locations} for x in p]
+            else:
+                output = [{'amount':x.edu_graduate,'zipcode':x.zipcode,'total_people':x.total_people,'locations':x.locations} for x in p]
+            
+        elif pop_type == 'income':
+            income = request.GET.get('income')
+            if income == 'incomes_below_10000':
+                output = [{'amount':x.edu_graduate,'zipcode':x.zipcode,'total_people':x.incomes_below_10000,'total_households':x.total_households,'locations':x.locations} for x in p]
+            elif income == 'incomes_10000_14999':
+                output = [{'amount':x.edu_graduate,'zipcode':x.zipcode,'total_people':x.incomes_10000_14999,'total_households':x.total_households,'locations':x.locations} for x in p]
+            elif income == 'incomes_15000_24999':
+                output = [{'amount':x.edu_graduate,'zipcode':x.zipcode,'total_people':x.incomes_15000_24999,'total_households':x.total_households,'locations':x.locations} for x in p]
+            elif income == 'incomes_25000_34999':
+                output = [{'amount':x.edu_graduate,'zipcode':x.zipcode,'total_people':x.incomes_25000_34999,'total_households':x.total_households,'locations':x.locations} for x in p]
+            elif income == 'incomes_35000_49999':
+                output = [{'amount':x.edu_graduate,'zipcode':x.zipcode,'total_people':x.incomes_35000_49999,'total_households':x.total_households,'locations':x.locations} for x in p]
+            elif income == 'incomes_75000_99999':
+                output = [{'amount':x.edu_graduate,'zipcode':x.zipcode,'total_people':x.incomes_75000_99999,'total_households':x.total_households,'locations':x.locations} for x in p]
+            elif income == 'incomes_100000_149999':
+                output = [{'amount':x.edu_graduate,'zipcode':x.zipcode,'total_people':x.incomes_100000_149999,'total_households':x.total_households,'locations':x.locations} for x in p]
+            elif income == 'incomes_150000_199999':
+                output = [{'amount':x.edu_graduate,'zipcode':x.zipcode,'total_people':x.incomes_150000_199999,'total_households':x.total_households,'locations':x.locations} for x in p]
+            else:
+                output = [{'amount':x.edu_graduate,'zipcode':x.zipcode,'total_people':x.incomes_over_200000,'total_households':x.total_households,'locations':x.locations} for x in p]
+           
+                
+            
+        return JsonResponse({"output": output})
+            
+    else:
+        return None  
