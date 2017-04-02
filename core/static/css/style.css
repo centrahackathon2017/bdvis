@@ -2,6 +2,15 @@
     width: 100%;
     height: 100%;
 }
+.businesslist{
+    margin: 5px 0px 5px 0px;
+    border: 1px solid #D7D5D5;
+    border-radius: 5px 5px 5px 5px;
+    padding: 5px;
+    height: 30px;
+    width: calc(100% - 30px);
+    font-size: 8pt;
+}
 .wraplist{
     height: 60px;
     width: calc(100% - 30px);

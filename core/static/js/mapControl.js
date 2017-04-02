@@ -22,7 +22,24 @@ function queryData(){
     });
 }
 
+function closeChips(){
+  
+}
 
+var all = false
+function onBusinessChange(event){
+  if(event.value=='ALL'){
+    all = true
+    $('.wraplist').html('');
+    $('.wraplist').prepend('<div class="chip"><span class="chiptext">ALL</span><img class="chipicon" src="../static/img/ic_clear_white.svg" onClick="closeChips(this)"/></div>');
+  }else{
+    if(all==true){
+       $('.wraplist').html('');
+       all = false;
+    }
+    $('.wraplist').prepend('<div id='+event.value+' class="chip"><span class="chiptext">'+event.value+'</span><img class="chipicon" src="../static/img/ic_clear_white.svg" /></div>');
+  }
+}
 
 
 
