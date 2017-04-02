@@ -1,7 +1,6 @@
 from __future__ import unicode_literals
 
-# from django.db import models
-from django.contrib.gis.db import models
+from django.db import models
 
 
 class Business(models.Model):
@@ -13,3 +12,8 @@ class Business(models.Model):
     start_date = models.DateField()
     physical_address = models.TextField()
     mailing_address = models.TextField()
+
+class Poi(models.Model):
+    name = models.CharField(max_length=255)
+    category = models.CharField(max_length=255)
+    location = models.CharField(max_length=255)
