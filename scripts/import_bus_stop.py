@@ -1,7 +1,7 @@
 from sodapy import Socrata
 from datetime import datetime
 
-DRY_RUN = True
+DRY_RUN = False
 
 client = Socrata("data.cityofgainesville.org", None)
 
@@ -15,15 +15,15 @@ for i in range(2):
             name = row["stop_name"]
             location = "{%s,%s}" % (row["the_geom"]["coordinates"][0], row["the_geom"]["coordinates"][1])
 
-            print name
-            print location
+            # print name
+            # print location
 
             if not DRY_RUN:
                 from core.models import Poi
                 Poi(
                     category="BUS STOP",
-                    name=stop_name,
-                    location=the_geom
+                    name=name,
+                    location=location
                 ).save()
                 counter += 1
 

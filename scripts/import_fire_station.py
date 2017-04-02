@@ -1,7 +1,7 @@
 from sodapy import Socrata
 from datetime import datetime
 
-DRY_RUN = True
+DRY_RUN = False
 
 client = Socrata("data.cityofgainesville.org", None)
 
@@ -22,8 +22,8 @@ for i in range(1):
                 from core.models import Poi
                 Poi(
                     category="FIRE STATION",
-                    name=station,
-                    location=the_geom
+                    name=name,
+                    location=location
                 ).save()
                 counter += 1
 
