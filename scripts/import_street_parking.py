@@ -1,7 +1,7 @@
 from sodapy import Socrata
 from datetime import datetime
 
-DRY_RUN = True
+DRY_RUN = False
 
 client = Socrata("data.cityofgainesville.org", None)
 
@@ -19,10 +19,10 @@ for i in range(1):
             print locations
 
             if not DRY_RUN:
-                from core.models import Poi
-                Poi(
-                category="PARKING LOT",
-                location=the_geom
+                from core.models import Parking
+                Parking(
+                    category="STREET",
+                    locations=locations
                 ).save()
                 counter += 1
 
