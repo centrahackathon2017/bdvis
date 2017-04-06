@@ -545,7 +545,7 @@ $('.btn--parkings').click(function(){
             success:  function(result){
 
                 parkingAmount=result.output.length-1;
-                console.log('amount'+parkingAmount);
+                console.log('amount '+parkingAmount);
 
                 for(var i=0;i<parkingAmount;i++){
 
@@ -561,7 +561,7 @@ $('.btn--parkings').click(function(){
                           areaCoor.push({lat: parseFloat(pathObj[i][1]), lng: parseFloat(pathObj[i][0])});
                       
                     }
-
+                      console.log('coordinate :');
                       console.log(areaCoor);
                       parkingArea[i] = new google.maps.Polygon({
                         paths: areaCoor,
@@ -578,7 +578,7 @@ $('.btn--parkings').click(function(){
                     }
                 }
                 
-                showParkingArea();
+                //showParkingArea();
                 showParkingAreaStatus = true;
             },
             error:function(xhr,status){
@@ -588,10 +588,58 @@ $('.btn--parkings').click(function(){
 
       }else{
         
-        hideParkingArea();
+        //hideParkingArea();
         showParkingAreaStatus = false;
       }
     
 });
 
 
+var parkingAmount = 0;
+var showParkingAreaStatus = false;
+var p_type = [];
+
+
+function showZone(event){
+  console.log(event.value)
+
+    if(showParkingAreaStatus==false){
+        $.ajax({
+            url: '/api/get_zoning?business_type='+event.value,
+            type: 'GET',
+            datatype: 'json',
+            crossDomain: true ,
+            success:  function(result){
+
+                    var areaCoor = [
+
+            {lng: -82.325779601, lat: 28.4697827309},
+            {lng: -82.0245493745, lat: 28.6702959247},
+            {lng: -82.1245493745, lat: 29.4702959247},
+            {lng: -82.2245493745, lat: 29.6702959247},
+            {lng: -82.325779601, lat: 28.4697827309}];
+
+                      console.log(areaCoor);
+                      parkingArea = new google.maps.Polygon({
+                        paths: areaCoor,
+                        strokeColor: '#FF0000',
+                        strokeOpacity: 0.8,
+                        strokeWeight: 2,
+                        fillColor: '#FF0000',
+                        fillOpacity: 0.35,
+                        map : map});
+              
+                showParkingAreaStatus = true;
+            },
+            error:function(xhr,status){
+                console.log(status);
+            }
+          }); 
+
+      }else{
+        
+        //hideParkingArea();
+        showParkingAreaStatus = false;
+      }
+    
+}
