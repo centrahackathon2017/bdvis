@@ -1,5 +1,5 @@
 from django.contrib import admin
-from core.models import Business, Poi, Parking, Zone, Population
+from core.models import Business, Poi, Parking, Zone, Population, NewBusiness
 
 
 class BusinessAdmin(admin.ModelAdmin):
@@ -22,8 +22,13 @@ class PopulationAdmin(admin.ModelAdmin):
     pass
 
 
+class NewBusinessAdmin(admin.ModelAdmin):
+    pass
+
+
 admin.site.register(Business, BusinessAdmin)
 admin.site.register(Poi, PoiAdmin)
 admin.site.register(Parking, ParkingAdmin)
 admin.site.register(Zone, ZoneAdmin)
 admin.site.register(Population, PopulationAdmin)
+admin.site.register(NewBusiness, NewBusinessAdmin)
