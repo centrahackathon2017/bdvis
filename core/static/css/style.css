@@ -66,19 +66,26 @@
 #rightpanel{
     position: absolute;
     background-color: #FFFFFF;
-    height: 230px;
-    width: 200px;
+    height: calc(100% - 50px);
+    width: 250px;
     top: 25px;
     right: 15px;
-    z-index: 1;
-    color: #FFFFFF;
+    z-index: 2;
     box-shadow: 2px 2px 2px rgba(0,0,0,0.36);
     box-sizing: border-box;
 }
-header{
+.leftheader{
     height: 45px;
     width: 100%;
     background-color: #00BFA5;
+    display: flex;
+    align-items: center;
+    padding-left: 15px;
+    box-sizing: border-box;
+}
+.rightheader{
+    height: 45px;
+    width: 100%;
     display: flex;
     align-items: center;
     padding-left: 15px;
@@ -89,8 +96,25 @@ header{
     width: 100%;
     padding: 15px;
 }
+.titledetail{
+    padding: 15 15px 5px 15px;
+}
 article{
     color: #555554;
+}
+#barChart{
+    padding-left: 15px;
+}
+.detail{
+    display: flex;
+    text-align: right;
+    margin-bottom: 15px;
+}
+.column1{
+    width: 40%;
+}
+column2{
+    width: 60%;
 }
 .line{
     width: 90%;

@@ -74,46 +74,40 @@ function queryBusinessData(name){
     });
 }
 
+function onAgeChange(event){
+    queryAge(event.value)
+}
 
-function queryAge(name){
+
+function queryAge(age){
+  console.log(age)
     $.ajax({
-        url: '/api/get_businesses',
+        url: 'http://127.0.0.1:8000/api/get_population_density',
         type: 'get',
-        data: {business_type:name},
+        data: {population_density_type:'age',age_range:age},
         cache: false,
         dataType: "json",
         success:  function(result){
-          console.log(result)
+
+        console.log(result)
         if(result.output.length>0){
-            dataBusiness.push(result)
 
             for(var i=0;i<result.output.length;i++){
-              var location = getLatLng(result.output[i].location)
-              var marker = new google.maps.Marker({
-                  position: location,
-                  map: map
-              });
-
-              var info = new google.maps.InfoWindow({
-                  content: '<section><div class="labellat"><div class="col1">Name: </div><div class="col2 name">'+result.output[i].name+'</div></div><div class="labellng"><div class="col1">Type: </div><div class="col2 type">'+result.output[i].type+'</div></div><div class="labellng"><div class="col1">Phone: </div><div class="col2 phone">'+result.output[i].phone+'</div></div><div class="labellng"><div class="col1">Address: </div><div class="col2 ">'+result.output[i].physical_address+'</div></div><div class="labellng"><div class="col1">Email: </div><div class="col2">'+result.output[i].email+'</div></div><div class="labellng"><div class="col1">Lat: </div><div class="col2">'+getLat(result.output[i].location)+'</div></div><div class="labellng"><div class="col1">Lng: </div><div class="col2">'+getLng(result.output[i].location)+'</div></div></section>'
-              });
-              marker.addListener('mouseover', function() {
-                  info.open(map,this)
-              });
-              marker.addListener('mouseout', function() {
-                  info.close()
-              });
-
-              markerBusiness.push(marker)
-            }
+               console.log(result.output[i].locations)
+            };
         }  
-
         },
         error:function(xhr,status){
             console.log('query error'+status);
         }
     });
 }
+
+function onMaleClick(){
+  console.log('gender')
+}
+
+
 
 
 function closeChips(event){
@@ -141,11 +135,87 @@ function onBusinessChange(event){
 }
 
 
+/*--------------------------------------
+RIGHT PANEL
+---------------------------------------*/
+var myLineChart = new Chart($('#barChart'),{
+    type: 'bar',
+    data: {
+        labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+        datasets: [{
+            label: '# of Votes',
+            data: [12, 19, 3, 5, 2, 3],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255,99,132,1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero:true
+                }
+            }]
+        },
+        responsive: false,
+        legend: {
+            display: false
+        }
+    }
+});
 
 
-
-
-
+var myDoughnutChart = new Chart($('#lineChart'), {
+    type: 'line',
+    data: {
+      labels: ["January", "February", "March", "April", "May", "June", "July"],
+      datasets: [
+        {
+            label: "My First dataset",
+            fill: false,
+            lineTension: 0.1,
+            backgroundColor: "rgba(75,192,192,0.4)",
+            borderColor: "rgba(75,192,192,1)",
+            borderCapStyle: 'butt',
+            borderDash: [],
+            borderDashOffset: 0.0,
+            borderJoinStyle: 'miter',
+            pointBorderColor: "rgba(75,192,192,1)",
+            pointBackgroundColor: "#fff",
+            pointBorderWidth: 1,
+            pointHoverRadius: 5,
+            pointHoverBackgroundColor: "rgba(75,192,192,1)",
+            pointHoverBorderColor: "rgba(220,220,220,1)",
+            pointHoverBorderWidth: 2,
+            pointRadius: 1,
+            pointHitRadius: 10,
+            data: [65, 59, 80, 81, 56, 55, 40],
+            spanGaps: false,
+        }
+    ]
+    },
+    options:{
+        responsive: false,
+        legend: {
+            display: false
+        }
+    }
+});
 
 
 

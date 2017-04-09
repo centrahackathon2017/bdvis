@@ -8,7 +8,7 @@
     </head>
     <body>
         <section id="leftpanel">
-            <header class="header">Gainesville</header>
+            <header class="leftheader">Gainesville</header>
             <section class="business">
                 <article>Business</article>
                 <!--<input id="businessInput" list="business" name="business" placeholder="All businesses">-->
@@ -54,7 +54,7 @@
                 <div class="span">
                     <img class="age ageicon" src='../static/img/ic_add.svg' width="20">
                     <span class="age">Age</span>
-                    <select class="agespan list" style="display: none">
+                    <select class="agespan list" style="display: none" onChange="onAgeChange(this)">
                         <option value="age_under_5">Under 5 years</option>
                         <option value="age_5_9">5 to 9 years</option>
                         <option value="age_10_14">10 to 14 years</option>
@@ -74,7 +74,7 @@
                     <img class="genders gendersicon" src='../static/img/ic_add.svg' width="20">
                     <span class="genders">Gender</span>
                     <div class="wrap wrap--gender gendersspan" style='display: none;'>
-                        <div>
+                        <div onClick="onMaleClick()">
                             <div class="btn--circle btn--male"><img class="icon icon--male" src="../static/img/male.png"></div>
                             <div class="subtext text--male">Male</div>
                         </div>
@@ -179,10 +179,41 @@
             </section>
         </section>
 
+        <section id="rightpanel">
+            <header class="rightheader">Company name</header>
+            <div class="line"></div>
+            <section class="titledetail">Category</section>
+            <div class='detail'>
+                <div class='column1'>
+                    <div>Address :</div>
+                    <div>City :</div>
+                    <div>State :</div>
+                    <div>Zipcode :</div>
+                    <div>Latitude :</div>
+                    <div>Longitude :</div>
+                </div>
+                <div class='column2'>
+                    <div id='address'> 1234</div>
+                    <div id='city'> 1234</div>
+                    <div id='state'> 1234</div>
+                    <div id='zipcode'> 1234</div>
+                    <div id='latitude'> 1234</div>
+                    <div id='longitude'> 1234</div>
+                </div>
+            </div>
+            <div class="line"></div>
+            <section class="titledetail">Bar chart</section>
+            <canvas id="barChart" width="220" height="150"></canvas>
+
+            <div class="line"></div>
+            <section class="titledetail">Line chart</section>
+            <canvas id="lineChart" width="235" height="150"></canvas>
+        </section>
         
         <section id="map"></section>
 
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCRmEUUVnLQasEnm_w5tK06uUJxvtwaclM"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.bundle.min.js"></script>
         <script src="../static/js/material.min.js"></script>
         <script src="../static/js/jquery-3.2.0.min.js"></script>
         <script src="../static/js/mapControl.js"></script>
