@@ -27,5 +27,6 @@ urlpatterns = [
     url(r'^api/get_facilities$', core.views.get_facilities),
     url(r'^api/get_parkings$', core.views.get_parkings),
     url(r'^api/get_zoning$', core.views.get_zoning),
-    url(r'^api/get_population_density$', core.views.get_population_density)
+    url(r'^api/get_population_density$', core.views.get_population_density),
+    url(r'^api/get_new_businesses$', core.views.get_new_businesses)
 ]

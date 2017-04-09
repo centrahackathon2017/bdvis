@@ -1,12 +1,29 @@
 from django.shortcuts import render
 from django.http import JsonResponse, HttpResponse
-from models import Business, Poi, Parking, Zone, Population
+from models import Business, Poi, Parking, Zone, Population, NewBusiness
 
 
 def index(request):
     context = {}
     return render(request, "index.html", context)
 
+def get_new_businesses(request):
+    
+    if request.method == 'GET':
+        bus_type_list = request.GET.getlist('business_type')
+        b=[]
+        for t in bus_type_list:
+            if t == 'all':
+                b = NewBusiness.objects.all()
+                break
+            else:     
+                b.extend(NewBusiness.objects.filter(category=t))
+
+        output = [{'category': x.category, 'fid' : x.fid, 'company_name' : x.company_name, 'address' : x.address, 'city' : x.city,'state' : x.state, 'zipcode' : x.zipcode , 'latitude' : x.latitude, 'longitude' : x.longitude, 'industry_description' : x.industry_description, 'indu_emp' : x.indu_emp, 'serv_emp' : x.serv_emp, 'comm_emp' : x.comm_emp ,  'estemp' : x.estemp,'totalpop' : x.totalpop, 'households' : x.households,'male': x.male, 'female' : x.female, 'white' : x.white ,'black' : x.black,'ameri_es' :x.ameri_es,'asian' : x.asian, 'hawn_pi': x.hawn_pi, 'other' : x.other,'mult_race' : x.mult_race, 'hispanic' : x.hispanic, 'white_nh' : x.white_nh,'average_household_size' : x.average_household_size, 'age_below_18' : x.age_below_18, 'age_18_40' : x.age_18_40,'age_40_65' : x.age_40_65,'age_65_plus' : x.age_65_plus, 'age_median' : x.age_median,'tran_total' : x.tran_total,'tran_car' : x.tran_car, 'tran_moto' : x.tran_moto,'tran_bike' : x.tran_bike,'tran_pub' : x.tran_pub, 'tran_walk' : x.tran_walk, 'tran_other' : x.tran_other, 'tran_home' : x.tran_home,'currently_student' : x.currently_student, 'currently_not_student' : x.currently_not_student, 'less_10k' : x.less_10k, 'i10k_14k' : x.i10k_14k,'i15k_19k' : x.i15k_19k, 'i20k_24k': x.i20k_24k, 'i25k_29k' : x.i25k_29k, 'i30k_34k' : x.i30k_34k, 'i35k_39k' : x.i35k_39k,'i40k_44k': x.i40k_44k,'i45k_49k' : x.i45k_49k, 'i50k_59k' : x.i50k_59k, 'i60k_74k' : x.i60k_74k, 'i75k_99k' : x.i75k_99k, 'i100k_124k' : x.i100k_124k,'i125k_149k' : x.i125k_149k, 'i150k_199k' : x.i150k_199k, 'i200kmore' : x.i200kmore, 'median_household_income' : x.median_household_income,'percent_bachelor_degree' : x.percent_bachelor_degree, 'percent_poverty': x.percent_poverty} for x in b]
+        return JsonResponse({"output": output})
+    else:
+        return None
+        
 
 def get_businesses(request):
    
