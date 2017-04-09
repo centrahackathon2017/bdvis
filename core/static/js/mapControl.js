@@ -138,20 +138,123 @@ function onBusinessChange(event){
 /*--------------------------------------
 RIGHT PANEL
 ---------------------------------------*/
-var myLineChart = new Chart($('#barChart'),{
+var ageChart = new Chart($('#ageChart'),{
+    type: 'pie',
+    data: {
+      labels: [
+        "Below 18",
+        "18-40",
+        "40-65",
+        "65 Plus"
+      ],
+      datasets: [
+        {
+            data: [300, 50, 100,20],
+            backgroundColor: [
+                "#FF6384",
+                "#36A2EB",
+                "#FFCE56"
+            ],
+            hoverBackgroundColor: [
+                "#FF6384",
+                "#36A2EB",
+                "#FFCE56"
+            ]
+      }]
+    },
+    options:{
+        responsive: false,
+        legend: {
+            labels:{
+              boxWidth: 30,
+              usePointStyle: true
+            }
+        }
+    }
+});
+
+var genderChart = new Chart($('#genderChart'),{
+    type: 'pie',
+    data: {
+      labels: [
+        "Male",
+        "Female"
+      ],
+      datasets: [
+        {
+            data: [50, 100],
+            backgroundColor: [
+                "#36A2EB",
+                "#FFCE56"
+            ],
+            hoverBackgroundColor: [
+                "#36A2EB",
+                "#FFCE56"
+            ]
+      }]
+    },
+    options:{
+        responsive: false,
+        legend: {
+            labels:{
+              boxWidth: 30,
+              usePointStyle: true
+            }
+        }
+    }
+});
+
+var employmentChart = new Chart($('#employmentChart'),{
+    type: 'pie',
+    data: {
+      labels: [
+        "Industrial",
+        "Service related",
+        "Commercial"
+      ],
+      datasets: [
+        {
+            data: [300, 50, 100],
+            backgroundColor: [
+                "#FF6384",
+                "#36A2EB",
+                "#FFCE56"
+            ],
+            hoverBackgroundColor: [
+                "#FF6384",
+                "#36A2EB",
+                "#FFCE56"
+            ]
+      }]
+    },
+    options:{
+        responsive: false,
+        legend: {
+            labels:{
+              boxWidth: 30,
+              usePointStyle: true
+            }
+        }
+    }
+});
+
+var peopleChart = new Chart($('#peopleChart'),{
     type: 'bar',
     data: {
-        labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+        labels: ["White", "Black", "Ameri es", "Asian", "Hawn pi", "Mult race", "Hispanic", "White nh", "Other"],
         datasets: [{
             label: '# of Votes',
-            data: [12, 19, 3, 5, 2, 3],
+            data: [12, 19, 3, 5, 2, 3,5,7,9],
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
                 'rgba(54, 162, 235, 0.2)',
                 'rgba(255, 206, 86, 0.2)',
                 'rgba(75, 192, 192, 0.2)',
                 'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
+                'rgba(255, 159, 64, 0.2)',
+                'rgba(86, 244, 66, 0.2)',
+                'rgba(244, 176, 66, 0.2)',
+                'rgba(65, 91, 244, 0.2)'
             ],
             borderColor: [
                 'rgba(255,99,132,1)',
@@ -159,7 +262,10 @@ var myLineChart = new Chart($('#barChart'),{
                 'rgba(255, 206, 86, 1)',
                 'rgba(75, 192, 192, 1)',
                 'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)'
+                'rgba(255, 159, 64, 1)',
+                'rgba(86, 244, 66, 1)',
+                'rgba(244, 176, 66, 1)',
+                'rgba(65, 91, 244, 1)'
             ],
             borderWidth: 1
         }]
@@ -179,43 +285,166 @@ var myLineChart = new Chart($('#barChart'),{
     }
 });
 
-
-var myDoughnutChart = new Chart($('#lineChart'), {
-    type: 'line',
+var revenueChart = new Chart($('#revenueChart'),{
+    type: 'bar',
     data: {
-      labels: ["January", "February", "March", "April", "May", "June", "July"],
-      datasets: [
-        {
-            label: "My First dataset",
-            fill: false,
-            lineTension: 0.1,
-            backgroundColor: "rgba(75,192,192,0.4)",
-            borderColor: "rgba(75,192,192,1)",
-            borderCapStyle: 'butt',
-            borderDash: [],
-            borderDashOffset: 0.0,
-            borderJoinStyle: 'miter',
-            pointBorderColor: "rgba(75,192,192,1)",
-            pointBackgroundColor: "#fff",
-            pointBorderWidth: 1,
-            pointHoverRadius: 5,
-            pointHoverBackgroundColor: "rgba(75,192,192,1)",
-            pointHoverBorderColor: "rgba(220,220,220,1)",
-            pointHoverBorderWidth: 2,
-            pointRadius: 1,
-            pointHitRadius: 10,
-            data: [65, 59, 80, 81, 56, 55, 40],
-            spanGaps: false,
-        }
-    ]
+        labels: ["120k 24k", "125k 29k", "130k 34k", "135k 39k", "140k 44k", "145k 49k", "150k 59k", "160k 74k", "175k 99k", "1100k 124k", "1125k 149k"],
+        datasets: [{
+            label: '# of Votes',
+            data: [12, 19, 3, 5, 2, 3,5,7,9,10,8],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)',
+                'rgba(86, 244, 66, 0.2)',
+                'rgba(244, 176, 66, 0.2)',
+                'rgba(65, 91, 244, 0.2)',
+                'rgba(244, 65, 88, 0.2)',
+                'rgba(187, 65, 244, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255,99,132,1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)',
+                'rgba(86, 244, 66, 1)',
+                'rgba(244, 176, 66, 1)',
+                'rgba(65, 91, 244, 1)',
+                'rgba(244, 65, 88, 1)',
+                'rgba(187, 65, 244, 1)'
+            ],
+            borderWidth: 1
+        }]
     },
-    options:{
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero:true
+                }
+            }]
+        },
         responsive: false,
         legend: {
             display: false
         }
     }
 });
+
+var transportChart = new Chart($('#transportChart'),{
+    type: 'bar',
+    data: {
+        labels: ["Car", "Moto", "Bike", "Pub", "Walk", "Home", "Other"],
+        datasets: [{
+            label: '# of Votes',
+            data: [12, 19, 3, 5, 2, 3,5],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)',
+                'rgba(86, 244, 66, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255,99,132,1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)',
+                'rgba(86, 244, 66, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero:true
+                }
+            }]
+        },
+        responsive: false,
+        legend: {
+            display: false
+        }
+    }
+});
+
+var educationChart = new Chart($('#educationChart'), {
+    data: {
+      datasets: [{
+        data: [
+            11,
+            16
+        ],
+        backgroundColor: [
+            "#FF6384",
+            "#4BC0C0"
+        ],
+        label: 'My dataset' // for legend
+        }],
+        labels: [
+            "Red",
+            "Green"
+        ]
+    },
+    type: 'polarArea',
+    options:{
+        responsive: false,
+        legend: {
+            labels:{
+              boxWidth: 30,
+              usePointStyle: true
+            }
+        }
+    }
+});
+
+// var myDoughnutChart = new Chart($('#lineChart'), {
+//     type: 'line',
+//     data: {
+//       labels: ["January", "February", "March", "April", "May", "June", "July"],
+//       datasets: [
+//         {
+//             label: "My First dataset",
+//             fill: false,
+//             lineTension: 0.1,
+//             backgroundColor: "rgba(75,192,192,0.4)",
+//             borderColor: "rgba(75,192,192,1)",
+//             borderCapStyle: 'butt',
+//             borderDash: [],
+//             borderDashOffset: 0.0,
+//             borderJoinStyle: 'miter',
+//             pointBorderColor: "rgba(75,192,192,1)",
+//             pointBackgroundColor: "#fff",
+//             pointBorderWidth: 1,
+//             pointHoverRadius: 5,
+//             pointHoverBackgroundColor: "rgba(75,192,192,1)",
+//             pointHoverBorderColor: "rgba(220,220,220,1)",
+//             pointHoverBorderWidth: 2,
+//             pointRadius: 1,
+//             pointHitRadius: 10,
+//             data: [65, 59, 80, 81, 56, 55, 40],
+//             spanGaps: false,
+//         }
+//     ]
+//     },
+//     options:{
+//         responsive: false,
+//         legend: {
+//             display: false
+//         }
+//     }
+// });
 
 
 

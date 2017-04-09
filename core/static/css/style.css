@@ -102,9 +102,35 @@
 article{
     color: #555554;
 }
-#barChart{
-    padding-left: 15px;
+.barchart{
+    padding-left: 15px;  
 }
+.chart{
+    margin: auto;
+    margin-bottom: 15px;
+}
+.detailwrap{
+    height: calc(100% - 45px);
+    overflow-x: hidden;
+}
+.detailwrap::-webkit-scrollbar-track
+{
+	border-radius: 10px;
+	background-color: #F5F5F5;
+}
+
+.detailwrap::-webkit-scrollbar
+{
+	width: 5px;
+	background-color: #F5F5F5;
+}
+
+.detailwrap::-webkit-scrollbar-thumb
+{
+	border-radius: 10px;
+	background-color: #80cbc4;
+}
+
 .detail{
     display: flex;
     text-align: right;
