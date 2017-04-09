@@ -54,7 +54,10 @@ def get_zoning(request):
    
     if request.method == 'GET':
         business_type = request.GET.get('business_type')
-        zone=decode_zone(business_type)
+        try:
+            zone=decode_zone(business_type)
+        except:
+            zone=business_type
         b=[]
         for z in zone:
             b.extend(Zone.objects.filter(zone=z))
