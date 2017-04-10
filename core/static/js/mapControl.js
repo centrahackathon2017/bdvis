@@ -44,7 +44,7 @@ function queryBusinessData(name){
         cache: false,
         dataType: "json",
         success:  function(result){
-        console.log(result)
+        // console.log(result)
         if(result.output.length>0){
             dataBusiness.push(result);
             var markerBusinessTemp = []
