@@ -200,9 +200,9 @@ input[name="business"]{
     color: #555554;
 }
 .population{
-     height: 190px;
+     height: 100px;
      padding: 15px;
-      color: #555554;
+    color: #555554;
 }
 .wrap{
     display: flex;

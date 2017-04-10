@@ -90,7 +90,7 @@ function queryBusinessData(name){
                   info.close()
               });
 
-              markerData = { company_name : result.output[i].company_name ,
+              var markerData = { company_name : result.output[i].company_name ,
               category: result.output[i].category, fid : result.output[i].fid, address : result.output[i].address, city : result.output[i].city, state : result.output[i].state, zipcode : result.output[i].zipcode , 
               latitude : result.output[i].latitude, longitude : result.output[i].longitude, industry_description : result.output[i].industry_description, 
               indu_emp : result.output[i].indu_emp, serv_emp : result.output[i].serv_emp, comm_emp : result.output[i].comm_emp ,  estemp : result.output[i].estemp, totalpop : result.output[i].totalpop, 
@@ -186,23 +186,24 @@ function onBusinessChange(event){
 /*--------------------------------------
 RIGHT PANEL
 ---------------------------------------*/
-queryDetail('pharmacy');
+// TEST ONLY
+// queryDetail('pharmacy');
 
-function queryDetail(type){
-    $.ajax({
-        url: '/api/get_new_businesses',
-        type: 'get',
-        data: {business_type:type},
-        cache: false,
-        dataType: "json",
-        success:  function(result){
-            showDetail(result.output[0])
-        },
-        error:function(xhr,status){
-            console.log('QUERY DETAIL ERROR: '+status);
-        }
-    });
-}
+// function queryDetail(type){
+//     $.ajax({
+//         url: '/api/get_new_businesses',
+//         type: 'get',
+//         data: {business_type:type},
+//         cache: false,
+//         dataType: "json",
+//         success:  function(result){
+//             showDetail(result.output[0])
+//         },
+//         error:function(xhr,status){
+//             console.log('QUERY DETAIL ERROR: '+status);
+//         }
+//     });
+// }
 
 function showDetail(data){
     $('.detaillabel').hide()
@@ -214,7 +215,7 @@ function showDetail(data){
     $('#zipcode').text(data.zipcode)
     $('#latitude').text(data.latitude)
     $('#longitude').text(data.longitude)
-    // console.log(data)
+    console.log(data)
 
     var employmentChart = new Chart($('#employmentChart'),{
         type: 'pie',
