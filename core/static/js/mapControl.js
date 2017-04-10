@@ -157,6 +157,8 @@ function queryDetail(type){
 }
 
 function showDetail(data){
+    $('.detaillabel').hide()
+    $('.detaildata').show()
     $('.rightheader').text(data.company_name)
     $('#address').text(data.address)
     $('#city').text(data.city)

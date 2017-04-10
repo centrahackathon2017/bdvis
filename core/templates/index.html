@@ -180,59 +180,64 @@
         </section>
 
         <section id="rightpanel">
-            <header class="rightheader">N/A</header>
-            <div class="line"></div>
-            <div class="detailwrap">
-                <section class="titledetail">Category</section>
-                <div class='detail'>
-                    <div class='column1'>
-                        <div>Address :</div>
-                        <div>City :</div>
-                        <div>State :</div>
-                        <div>Zipcode :</div>
-                        <div>Latitude :</div>
-                        <div>Longitude :</div>
+            <div class="detaillabel">
+                <div>Click on the marker to view detail</div>
+            </div>
+            <div class="detaildata" style="display:none">
+                <header class="rightheader">N/A</header>
+                <div class="line"></div>
+                <div class="detailwrap">
+                    <section class="titledetail">Category</section>
+                    <div class='detail'>
+                        <div class='column1'>
+                            <div>Address :</div>
+                            <div>City :</div>
+                            <div>State :</div>
+                            <div>Zipcode :</div>
+                            <div>Latitude :</div>
+                            <div>Longitude :</div>
+                        </div>
+                        <div class='column2'>
+                            <div id='address'></div>
+                            <div id='city'></div>
+                            <div id='state'></div>
+                            <div id='zipcode'></div>
+                            <div id='latitude'></div>
+                            <div id='longitude'></div>
+                        </div>
                     </div>
-                    <div class='column2'>
-                        <div id='address'></div>
-                        <div id='city'></div>
-                        <div id='state'></div>
-                        <div id='zipcode'></div>
-                        <div id='latitude'></div>
-                        <div id='longitude'></div>
-                    </div>
+                    <div class="line"></div>
+                    <section class="titledetail">Employment in this business</section>
+                    <canvas id="employmentChart" class="chart" width="220" height="150"></canvas>
+
+                    <div class="line"></div>
+                    <section class="titledetail">Gender</section>
+                    <canvas id="genderChart" class="chart" width="200" height="130"></canvas>
+
+                    <div class="line"></div>
+                    <section class="titledetail">Age</section>
+                    <canvas id="ageChart" class="chart" width="210" height="155"></canvas>
+
+                    <div class="line"></div>
+                    <section class="titledetail">Education</section>
+                    <canvas id="educationChart" class="chart" width="220" height="150"></canvas>
+
+                    <div class="line"></div>
+                    <section class="titledetail">Transportation</section>
+                    <canvas id="transportChart" class='barchart' width="220" height="150"></canvas>
+
+                    <div class="line"></div>
+                    <section class="titledetail">People</section>
+                    <canvas id="peopleChart" class='barchart' width="220" height="150"></canvas>
+
+                    <div class="line"></div>
+                    <section class="titledetail">Revenue</section>
+                    <canvas id="revenueChart" width="235" height="150"></canvas>
+
+                    <!--<div class="line"></div>
+                    <section class="titledetail">Line chart</section>
+                    <canvas id="lineChart" width="235" height="150"></canvas>-->
                 </div>
-                <div class="line"></div>
-                <section class="titledetail">Employment in this business</section>
-                <canvas id="employmentChart" class="chart" width="220" height="150"></canvas>
-
-                <div class="line"></div>
-                <section class="titledetail">Gender</section>
-                <canvas id="genderChart" class="chart" width="200" height="130"></canvas>
-
-                <div class="line"></div>
-                <section class="titledetail">Age</section>
-                <canvas id="ageChart" class="chart" width="210" height="155"></canvas>
-
-                <div class="line"></div>
-                <section class="titledetail">Education</section>
-                <canvas id="educationChart" class="chart" width="220" height="150"></canvas>
-
-                <div class="line"></div>
-                <section class="titledetail">Transportation</section>
-                <canvas id="transportChart" class='barchart' width="220" height="150"></canvas>
-
-                <div class="line"></div>
-                <section class="titledetail">People</section>
-                <canvas id="peopleChart" class='barchart' width="220" height="150"></canvas>
-
-                <div class="line"></div>
-                <section class="titledetail">Revenue</section>
-                <canvas id="revenueChart" width="235" height="150"></canvas>
-
-                <!--<div class="line"></div>
-                <section class="titledetail">Line chart</section>
-                <canvas id="lineChart" width="235" height="150"></canvas>-->
             </div>
         </section>
         
