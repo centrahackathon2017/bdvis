@@ -12,6 +12,7 @@ var map = new google.maps.Map(document.getElementById('map'), mapOptions);
 
 var dataBusiness = []
 var indexBusiness = []
+var nodeBusiness = []
 
 function getLatLng(input){
       console.log(input)
@@ -54,7 +55,7 @@ function queryBusinessData(name){
         cache: false,
         dataType: "json",
         success:  function(result){
-        
+
         if(result.output.length>0){
             dataBusiness.push(result);
 
@@ -405,7 +406,7 @@ function showDetail(data){
     $('.detaildata').show()
     $('.rightheader').text(data.company_name)
     $('#address').text(data.address)
-    $('#city').text(data.city)
+    $('#citydetail').text(data.city)
     $('#state').text(data.state)
     $('#zipcode').text(data.zipcode)
     $('#latitude').text(data.latitude)
@@ -436,7 +437,7 @@ function showDetail(data){
           }]
         },
         options:{
-            responsive: false,
+            responsive: true,
             legend: {
                 labels:{
                   boxWidth: 30,
@@ -467,7 +468,7 @@ function showDetail(data){
           }]
         },
         options:{
-            responsive: false,
+            responsive: true,
             legend: {
                 labels:{
                   boxWidth: 30,
@@ -502,7 +503,7 @@ function showDetail(data){
           }]
         },
         options:{
-            responsive: false,
+            responsive: true,
             legend: {
                 labels:{
                   boxWidth: 30,
@@ -532,7 +533,7 @@ function showDetail(data){
         },
         type: 'polarArea',
         options:{
-            responsive: false,
+            responsive: true,
             legend: {
                 labels:{
                   boxWidth: 30,
@@ -577,7 +578,7 @@ function showDetail(data){
                     }
                 }]
             },
-            responsive: false,
+            responsive: true,
             legend: {
                 display: false
             }
@@ -623,7 +624,7 @@ function showDetail(data){
                     }
                 }]
             },
-            responsive: false,
+            responsive: true,
             legend: {
                 display: false
             }
@@ -681,7 +682,7 @@ function showDetail(data){
                     }
                 }]
             },
-            responsive: false,
+            responsive: true,
             legend: {
                 display: false
             }
