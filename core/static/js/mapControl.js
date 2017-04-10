@@ -12,6 +12,7 @@ var map = new google.maps.Map(document.getElementById('map'), mapOptions);
 
 var dataBusiness = []
 var indexBusiness = []
+var nodeBusiness = []
 
 function getLatLng(input){
       console.log(input)
@@ -43,10 +44,10 @@ function queryBusinessData(name){
         cache: false,
         dataType: "json",
         success:  function(result){
-          console.log(result)
+        console.log(result)
         if(result.output.length>0){
             dataBusiness.push(result);
-
+            var markerBusinessTemp = []
             for(var i=0;i<result.output.length;i++){
 
               var cat = result.output[i].category;
@@ -70,7 +71,6 @@ function queryBusinessData(name){
                   image = "../static/img/restaurant.png";
               }
 
-
               var location = {lat : parseFloat(result.output[i].latitude), lng: parseFloat(result.output[i].longitude)}
               var marker = new google.maps.Marker({
                   position: location,
@@ -78,6 +78,8 @@ function queryBusinessData(name){
                   icon: image
 
               });
+
+              markerBusinessTemp.push(marker)
 
               var info = new google.maps.InfoWindow({
                   content : result.output[i].company_name
