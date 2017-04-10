@@ -14,6 +14,7 @@ var dataBusiness = []
 var indexBusiness = []
 
 function getLatLng(input){
+      console.log(input)
       var data = input.split(',')
       data[0] = data[0].replace('[','')
       data[1] = data[1].replace(']','')
@@ -36,7 +37,7 @@ function getLng(input){
 
 function queryBusinessData(name){
     $.ajax({
-        url: '/api/get_businesses',
+        url: '/api/get_new_businesses',
         type: 'get',
         data: {business_type:name},
         cache: false,
@@ -44,18 +45,44 @@ function queryBusinessData(name){
         success:  function(result){
           console.log(result)
         if(result.output.length>0){
-            dataBusiness.push(result)
+            dataBusiness.push(result);
 
             for(var i=0;i<result.output.length;i++){
-              var location = getLatLng(result.output[i].location)
+
+              var cat = result.output[i].category;
+              if(cat=='cinema'){
+                  image = "../static/img/movie.png";
+              }else if(cat=='bank'){
+                  image = "../static/img/bank.png";
+              }else if(cat=='pharmacy'){
+                  image = "../static/img/pharmacy.png";
+              }else if(cat=='church'){
+                  image = "../static/img/church.png";
+              }else if(cat=='school'){
+                  image = "../static/img/school.png";
+              }else if(cat=='fitness'){
+                  image = "../static/img/fitness.png";
+              }else if(cat=='nightlife'){
+                  image = "../static/img/beer.png";
+              }else if(cat=='gerocery'){
+                  image = "../static/img/shop.png";
+              }else if(cat=='restaurant'){
+                  image = "../static/img/restaurant.png";
+              }
+
+
+              var location = {lat : parseFloat(result.output[i].latitude), lng: parseFloat(result.output[i].longitude)}
               var marker = new google.maps.Marker({
                   position: location,
-                  map: map
+                  map: map,
+                  icon: image
+
               });
 
               var info = new google.maps.InfoWindow({
-                  content: '<section><div class="labellat"><div class="col1">Name: </div><div class="col2 name">'+result.output[i].name+'</div></div><div class="labellng"><div class="col1">Type: </div><div class="col2 type">'+result.output[i].type+'</div></div><div class="labellng"><div class="col1">Phone: </div><div class="col2 phone">'+result.output[i].phone+'</div></div><div class="labellng"><div class="col1">Address: </div><div class="col2 ">'+result.output[i].physical_address+'</div></div><div class="labellng"><div class="col1">Email: </div><div class="col2">'+result.output[i].email+'</div></div><div class="labellng"><div class="col1">Lat: </div><div class="col2">'+getLat(result.output[i].location)+'</div></div><div class="labellng"><div class="col1">Lng: </div><div class="col2">'+getLng(result.output[i].location)+'</div></div></section>'
+                  content : result.output[i].company_name
               });
+
               marker.addListener('mouseover', function() {
                   info.open(map,this)
               });
@@ -63,7 +90,27 @@ function queryBusinessData(name){
                   info.close()
               });
 
-              markerBusiness.push(marker)
+              markerData = { company_name : result.output[i].company_name ,
+              category: result.output[i].category, fid : result.output[i].fid, address : result.output[i].address, city : result.output[i].city, state : result.output[i].state, zipcode : result.output[i].zipcode , 
+              latitude : result.output[i].latitude, longitude : result.output[i].longitude, industry_description : result.output[i].industry_description, 
+              indu_emp : result.output[i].indu_emp, serv_emp : result.output[i].serv_emp, comm_emp : result.output[i].comm_emp ,  estemp : result.output[i].estemp, totalpop : result.output[i].totalpop, 
+              households : result.output[i].households, male: result.output[i].male, female : result.output[i].female, white : result.output[i].white ,black : result.output[i].black, ameri_es :result.output[i].ameri_es,
+              asian : result.output[i].asian, hawn_pi: result.output[i].hawn_pi, other : result.output[i].other, mult_race : result.output[i].mult_race, hispanic : result.output[i].hispanic, white_nh : result.output[i].white_nh,
+              average_household_size : result.output[i].average_household_size, age_below_18 : result.output[i].age_below_18, age_18_40 : result.output[i].age_18_40, age_40_65 : result.output[i].age_40_65,
+              age_65_plus : result.output[i].age_65_plus, age_median : result.output[i].age_median, tran_total : result.output[i].tran_total,tran_car : result.output[i].tran_car, tran_moto : result.output[i].tran_moto,
+              tran_bike : result.output[i].tran_bike,tran_pub : result.output[i].tran_pub, tran_walk : result.output[i].tran_walk, tran_other : result.output[i].tran_other, tran_home : result.output[i].tran_home,
+              currently_student : result.output[i].currently_student, currently_not_student : result.output[i].currently_not_student, less_10k : result.output[i].less_10k, i10k_14k : result.output[i].i10k_14k,
+              i15k_19k : result.output[i].i15k_19k, i20k_24k : result.output[i].i20k_24k, i25k_29k : result.output[i].i25k_29k, i30k_34k : result.output[i].i30k_34k, i35k_39k : result.output[i].i35k_39k,
+              i40k_44k: result.output[i].i40k_44k, i45k_49k : result.output[i].i45k_49k, i50k_59k: result.output[i].i50k_59k, i60k_74k : result.output[i].i60k_74k, i75k_99k : result.output[i].i75k_99k, 
+              i100k_124k : result.output[i].i100k_124k, i125k_149k : result.output[i].i125k_149k, i150k_199k : result.output[i].i150k_199k, i200kmore : result.output[i].i200kmore, 
+              median_household_income : result.output[i].median_household_income, percent_bachelor_degree : result.output[i].percent_bachelor_degree, percent_poverty: result.output[i].percent_poverty
+
+              };
+
+              marker.addListener('click', function() {
+                  showDetail(markerData);
+              });
+              markerBusiness.push(marker);
             }
         }  
 
@@ -111,6 +158,7 @@ function onMaleClick(){
 
 
 function closeChips(event){
+  console.log('kkkk')
   $('#'+event).remove()
 }
 
@@ -122,7 +170,7 @@ function onBusinessChange(event){
     queryBusinessData('all');
     all = true
     $('.wraplist').html('');
-    $('.wraplist').prepend('<div id='+bid+' class="chip"><span class="chiptext">ALL</span><img class="chipicon" src="../static/img/ic_clear_white.svg" onClick="closeChips('+bid+')"/></div>');
+    $('.wraplist').prepend('<div id='+bid+' class="chip"><span class="chiptext">ALL</span><img class="chipicon" src="../static/img/ic_clear_white.svg" onClick="closeChips('+event.value+')"/></div>');
   }else{
     queryBusinessData(event.value);
     if(all==true){
@@ -754,4 +802,35 @@ function showZone(event){
         showParkingAreaStatus = false;
       }
     
+}
+
+var cityLayer  = null;
+
+function showCityBorder(event){
+    console.log('city : ' +event.checked);
+    if(event.checked){
+        cityLayer = new google.maps.KmlLayer({
+          url: '../static/kml/CITY.kmz',
+          map: map
+        });
+    }else{
+        cityLayer.setMap(null);
+        cityLayer = null;
+    }
+
+}
+
+var neighbourhoodLayer  = null;
+
+function showNeighbourhoodBorder(event){
+    console.log('Neighbourhood : ' +event.checked);
+    if(event.checked){
+        neighbourhoodLayer = new google.maps.KmlLayer({
+          url: '../static/kml/NEIGHBORHOODS.kmz',
+          map: map
+        });
+    }else{
+        neighbourhoodLayer.setMap(null);
+        neighbourhoodLayer = null;
+    }
 }

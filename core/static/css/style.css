@@ -92,7 +92,7 @@
     box-sizing: border-box;
 }
 .business{
-    height: 120px;
+    height: 240px;
     width: 100%;
     padding: 15px;
 }
@@ -101,6 +101,9 @@
 }
 article{
     color: #555554;
+    font-size: 14pt;
+    padding-bottom: 6pt;
+
 }
 #barChart{
     padding-left: 15px;
@@ -149,6 +152,7 @@ input[name="business"]{
     height: 80px;
     width: 100%;
     padding: 15px;
+    padding-bottom: 25px;
     position: relative;
     color: #555554;
 }

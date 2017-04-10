@@ -5,6 +5,7 @@
         <link rel="stylesheet" href="../static/css/style.css">
         <link rel="stylesheet" href="../static/css/material.min.css"/>
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"/>
+        <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"> </script>
     </head>
     <body>
         <section id="leftpanel">
@@ -12,11 +13,24 @@
             <section class="business">
                 <article>Business</article>
                 <!--<input id="businessInput" list="business" name="business" placeholder="All businesses">-->
-                <select class="businesslist" onChange="onBusinessChange(this)">
-                    <option value="ALL" selected>ALL</option>
+                <select class="businesslist" onChange="onBusinessChange(this)" >
+                    <optgroup label="Popular">
+                    <option value="ALL" id=0 selected="selected">ALL</option>
+                    <option value="bank" id=1 >BANK</option>
+                    <option value="church">CHURCH</option>
+                    <option value="cinema">CINEMA</option>
+                    <option value="school">SCHOOL</option>
+                    <option value="fitness">FITNESS</option>
+                    <option value="gerocery">GEROCERY</option>
+                    <option value="nightlife">NIGHTLIFE</option>
+                    <option value="pharmacy">PHARMACY</option>
+                    <option value="restaurant">RESTAURANT</option>
+                    </optgroup>
+                    <optgroup label="All">
                     <option value="ABSTRACTS OF TITLE">ABSTRACTS OF TITLE</option><option value="ACCOUNTANT/AUDITOR">ACCOUNTANT/AUDITOR</option><option value="ADVERTISING AGENCY">ADVERTISING AGENCY</option><option value="ADVERTISING-TRADE INDUCEMENT">ADVERTISING-TRADE INDUCEMENT</option><option value="AGENCY OTHER THAN ADVERTISING">AGENCY OTHER THAN ADVERTISING</option><option value="AGENCY-PRIVATE INVESTIGATIVE">AGENCY-PRIVATE INVESTIGATIVE</option><option value="AIRCRAFT REPAIR">AIRCRAFT REPAIR</option><option value="AIRCRAFT-FIXED BASE OPERATOR">AIRCRAFT-FIXED BASE OPERATOR</option><option value="ANIMAL CARE-BOARDING">ANIMAL CARE-BOARDING</option><option value="ANIMAL CARE-GROOMING">ANIMAL CARE-GROOMING</option><option value="ANIMAL OBEDIENCE SCHOOL">ANIMAL OBEDIENCE SCHOOL</option><option value="APARTMENT OR CONDO RENTALS">APARTMENT OR CONDO RENTALS</option><option value="APPRAISAL SERVICES">APPRAISAL SERVICES</option><option value="ARCHITECT">ARCHITECT</option><option value="ARMORED CAR SERVICE">ARMORED CAR SERVICE</option><option value="ART SCHOOL OR STUDIO">ART SCHOOL OR STUDIO</option><option value="ASSISTED LIVING FACILITY">ASSISTED LIVING FACILITY</option><option value="ATTORNEY/LAWYER">ATTORNEY/LAWYER</option><option value="AUCTION SHOP">AUCTION SHOP</option><option value="AUDIOLOGIST">AUDIOLOGIST</option><option value="AUTO BROKER (PURCHASING SERVICE)">AUTO BROKER (PURCHASING SERVICE)</option><option value="AUTO PAINTING, UPHOLSTERY OR TOP SHOP">AUTO PAINTING, UPHOLSTERY OR TOP SHOP</option><option value="AUTO REPAIR GARAGE">AUTO REPAIR GARAGE</option><option value="AUTO STORAGE OR PARKING LOT">AUTO STORAGE OR PARKING LOT</option><option value="AUTO-RECOVERY SERVICE">AUTO-RECOVERY SERVICE</option><option value="AUTO-SALVAGE YARD">AUTO-SALVAGE YARD</option><option value="AUTO-STORAGE (14 DAY MAXIMUM)">AUTO-STORAGE (14 DAY MAXIMUM)</option><option value="AUTO-TRANSFER, HAULING OR DELIVERY CO.">AUTO-TRANSFER, HAULING OR DELIVERY CO.</option><option value="AUTOMATED TELLER MACHINE">AUTOMATED TELLER MACHINE</option><option value="AUTOMOBILE ASSOCIATION">AUTOMOBILE ASSOCIATION</option><option value="BAIL BONDING AGENT - INDEPENDENT CONTRACTOR">BAIL BONDING AGENT - INDEPENDENT CONTRACTOR</option><option value="BAIL BONDING COMPANY">BAIL BONDING COMPANY</option><option value="BANK - BRANCH OFFICE">BANK - BRANCH OFFICE</option><option value="BANK - MAIN OFFICE">BANK - MAIN OFFICE</option><option value="BANQUET HALL/CONFERENCE CENTER">BANQUET HALL/CONFERENCE CENTER</option><option value="BARBER SHOP">BARBER SHOP</option><option value="BARBER/COSMETOLOGIST/NAIL TECH">BARBER/COSMETOLOGIST/NAIL TECH</option><option value="BEAUTY PARLOR">BEAUTY PARLOR</option><option value="BILLIARDS, BAGATELLE OR POOL (not coin-op)">BILLIARDS, BAGATELLE OR POOL (not coin-op)</option><option value="BIRTH CENTER">BIRTH CENTER</option><option value="BODY WRAPPER">BODY WRAPPER</option><option value="BOOKKEEPING OR INCOME TAX SERVICE">BOOKKEEPING OR INCOME TAX SERVICE</option><option value="BOTTLING PLANT AND/OR DISTRIBUTOR">BOTTLING PLANT AND/OR DISTRIBUTOR</option><option value="BRIDAL CONSULTANT">BRIDAL CONSULTANT</option><option value="BROKER-MANAGEMENT OFFICE">BROKER-MANAGEMENT OFFICE</option><option value="BURGLAR ALARMS - INSTALLATION AND MONITORING">BURGLAR ALARMS - INSTALLATION AND MONITORING</option><option value="BUSINESS BROKER">BUSINESS BROKER</option><option value="BUSINESS BROKER (MULTIPLE)">BUSINESS BROKER (MULTIPLE)</option><option value="BUSINESS OFFICE NOT OTHERWISE TAXED">BUSINESS OFFICE NOT OTHERWISE TAXED</option><option value="CAR CLEANING, WAXING, DETAILING">CAR CLEANING, WAXING, DETAILING</option><option value="CAR/TRUCK RENTALS/LEASING">CAR/TRUCK RENTALS/LEASING</option><option value="CATALOGUE OR MAIL ORDER SERVICE">CATALOGUE OR MAIL ORDER SERVICE</option><option value="CATERER">CATERER</option><option value="CEMETERY">CEMETERY</option><option value="CHARTER BUS (VFH SEE 25-51)">CHARTER BUS (VFH SEE 25-51)</option><option value="CHIROPRACTOR">CHIROPRACTOR</option><option value="CLINICAL SOCIAL WORKER">CLINICAL SOCIAL WORKER</option><option value="COIN-OP VENDING MACHINES">COIN-OP VENDING MACHINES</option><option value="COIN-OP/AMUSEMENT MACHINE">COIN-OP/AMUSEMENT MACHINE</option><option value="COIN-OP/MUSIC MACHINE">COIN-OP/MUSIC MACHINE</option><option value="COIN-OP/WEIGHING MACHINE">COIN-OP/WEIGHING MACHINE</option><option value="COMPUTER ANALYSTS">COMPUTER ANALYSTS</option><option value="CONCESSION STAND">CONCESSION STAND</option><option value="CONSULTANT">CONSULTANT</option><option value="CONTRACTOR-BUILDING">CONTRACTOR-BUILDING</option><option value="CONTRACTOR-CONCRETE, STONE, BRICK">CONTRACTOR-CONCRETE, STONE, BRICK</option><option value="CONTRACTOR-DRYWALL">CONTRACTOR-DRYWALL</option><option value="CONTRACTOR-ELECTRICAL">CONTRACTOR-ELECTRICAL</option><option value="CONTRACTOR-ELEVATOR">CONTRACTOR-ELEVATOR</option><option value="CONTRACTOR-FIRE SPRINKLER SYSTEM">CONTRACTOR-FIRE SPRINKLER SYSTEM</option><option value="CONTRACTOR-FLOOR SANDING & FINISHING">CONTRACTOR-FLOOR SANDING & FINISHING</option><option value="CONTRACTOR-GAS PIPE INSTALLATION">CONTRACTOR-GAS PIPE INSTALLATION</option><option value="CONTRACTOR-GENERAL-UNLIMITED">CONTRACTOR-GENERAL-UNLIMITED</option><option value="CONTRACTOR-GLASS & GLAZING">CONTRACTOR-GLASS & GLAZING</option><option value="CONTRACTOR-HARV CLASS A UNLTD">CONTRACTOR-HARV CLASS A UNLTD</option><option value="CONTRACTOR-HARV CLASS B A/C & HEAT">CONTRACTOR-HARV CLASS B A/C & HEAT</option><option value="CONTRACTOR-INSTALLATION">CONTRACTOR-INSTALLATION</option><option value="CONTRACTOR-INSULATION">CONTRACTOR-INSULATION</option><option value="CONTRACTOR-LAND CLEAR/INCL. LANDSCAPE">CONTRACTOR-LAND CLEAR/INCL. LANDSCAPE</option><option value="CONTRACTOR-LANDSCAPE (NO LAND CLEARING)">CONTRACTOR-LANDSCAPE (NO LAND CLEARING)</option><option value="CONTRACTOR-MASON">CONTRACTOR-MASON</option><option value="CONTRACTOR-MECHANICAL">CONTRACTOR-MECHANICAL</option><option value="CONTRACTOR-OTHER">CONTRACTOR-OTHER</option><option value="CONTRACTOR-PAINTER/PAPERHANGER">CONTRACTOR-PAINTER/PAPERHANGER</option><option value="CONTRACTOR-PARKING LOT STRIPING">CONTRACTOR-PARKING LOT STRIPING</option><option value="CONTRACTOR-PLASTER/STUCCO">CONTRACTOR-PLASTER/STUCCO</option><option value="CONTRACTOR-PLUMBER/INCL. GAS LINES">CONTRACTOR-PLUMBER/INCL. GAS LINES</option><option value="CONTRACTOR-RESIDENTIAL">CONTRACTOR-RESIDENTIAL</option><option value="CONTRACTOR-ROOFER, ROOF DECK, CLEANING">CONTRACTOR-ROOFER, ROOF DECK, CLEANING</option><option value="CONTRACTOR-SEALCOATING">CONTRACTOR-SEALCOATING</option><option value="CONTRACTOR-SEPTIC TANK INSTALL/SERV.">CONTRACTOR-SEPTIC TANK INSTALL/SERV.</option><option value="CONTRACTOR-SOLAR ENERGY">CONTRACTOR-SOLAR ENERGY</option><option value="CONTRACTOR-SWIM POOL CONST./INSTALL">CONTRACTOR-SWIM POOL CONST./INSTALL</option><option value="CONTRACTOR-SWIM POOL SERVICING">CONTRACTOR-SWIM POOL SERVICING</option><option value="CONTRACTOR-TILE">CONTRACTOR-TILE</option><option value="CONTRACTOR-UNDERGROUND UTILITY">CONTRACTOR-UNDERGROUND UTILITY</option><option value="CONTRACTOR-WRECKING">CONTRACTOR-WRECKING</option><option value="COPY BUSINESS">COPY BUSINESS</option><option value="COUNSELOR/ADVISOR (UNLICENSED)">COUNSELOR/ADVISOR (UNLICENSED)</option><option value="COURIER SERVICE">COURIER SERVICE</option><option value="DANCE HALL/NIGHT CLUB">DANCE HALL/NIGHT CLUB</option><option value="DATA PROCESSING SERVICE">DATA PROCESSING SERVICE</option><option value="DENTIST">DENTIST</option><option value="DIETETICS/NUTRITIONIST">DIETETICS/NUTRITIONIST</option><option value="DISTRIBUTOR-MERCHANDISE OR COMMODITIES">DISTRIBUTOR-MERCHANDISE OR COMMODITIES</option><option value="DRIVE-IN FOOD STAND">DRIVE-IN FOOD STAND</option><option value="DRY CLEANING PICKUP FOR OFFSITE CLEANERS">DRY CLEANING PICKUP FOR OFFSITE CLEANERS</option><option value="DRY CLEANING PLANT">DRY CLEANING PLANT</option><option value="ELECTRONICS-COMPUTER PROGRAMMERS">ELECTRONICS-COMPUTER PROGRAMMERS</option><option value="EMPLOYMENT & TEMP SERVICES AGENCY">EMPLOYMENT & TEMP SERVICES AGENCY</option><option value="ENGINEER">ENGINEER</option><option value="EXERCISE OR TRAINING STUDIO">EXERCISE OR TRAINING STUDIO</option><option value="EXPORTER / IMPORTER">EXPORTER / IMPORTER</option><option value="EXTERIOR JANITORIAL AND CLEANING SERVICES">EXTERIOR JANITORIAL AND CLEANING SERVICES</option><option value="EXTERMINATORS - PEST CONTROL">EXTERMINATORS - PEST CONTROL</option><option value="FACIAL SPECIALIST">FACIAL SPECIALIST</option><option value="FLEA/FARMER'S MARKET">FLEA/FARMER'S MARKET</option><option value="FLORIST">FLORIST</option><option value="FORTUNETELLER/PSYCHIC">FORTUNETELLER/PSYCHIC</option><option value="FUNERAL HOME">FUNERAL HOME</option><option value="FUNERAL/CREMATION SERVICES">FUNERAL/CREMATION SERVICES</option><option value="GAS (L/P) AND/OR FUEL OIL DEALER">GAS (L/P) AND/OR FUEL OIL DEALER</option><option value="GAS OR FUELING STATION">GAS OR FUELING STATION</option><option value="GASOLINE & OIL DEALER,WHOLESALE/RETAIL">GASOLINE & OIL DEALER,WHOLESALE/RETAIL</option><option value="GEOLOGIST">GEOLOGIST</option><option value="GRAPHIC ARTS & DRAFTING">GRAPHIC ARTS & DRAFTING</option><option value="GYMNASIUM,ATHLETIC CLUB OR HEALTH SALON">GYMNASIUM,ATHLETIC CLUB OR HEALTH SALON</option><option value="HEALTH CARE CLINIC">HEALTH CARE CLINIC</option><option value="HEARING AID CONSULTANT">HEARING AID CONSULTANT</option><option value="HOLIDAY OR SEASONAL LOT SALES">HOLIDAY OR SEASONAL LOT SALES</option><option value="HOME HEALTH AGENCY">HOME HEALTH AGENCY</option><option value="HOME PARTY SALES">HOME PARTY SALES</option><option value="HOSPITAL">HOSPITAL</option><option value="HOTEL, ROOMING HOUSE, MOTEL, TOUR CT.">HOTEL, ROOMING HOUSE, MOTEL, TOUR CT.</option><option value="HYPNOSIS">HYPNOSIS</option><option value="INSURANCE AGENT -1 AGENT">INSURANCE AGENT -1 AGENT</option>
                     <option value="INSURANCE AGENTS - 2 OR MORE PEOPLE">INSURANCE AGENTS - 2 OR MORE PEOPLE</option><option value="INSURANCE COMPANY OR BROKER">INSURANCE COMPANY OR BROKER</option><option value="INTERIOR DECORATOR/DESIGNER (Commercial and Residential STATE LICENSE REQ.">INTERIOR DECORATOR/DESIGNER (Commercial and Residential) STATE LICENSE REQ.</option><option value="INTERIOR DECORATOR/DESIGNER (Residential Only) NO STATE LICENSE REQ.">INTERIOR DECORATOR/DESIGNER (Residential Only) NO STATE LICENSE REQ.</option><option value="INTERIOR JANITORIAL AND CLEANING SERVICES">INTERIOR JANITORIAL AND CLEANING SERVICES</option><option value="INVESTMENT ADVISER FIRM/BRANCH">INVESTMENT ADVISER FIRM/BRANCH</option><option value="JUNK OR SCRAP METAL DEALER">JUNK OR SCRAP METAL DEALER</option><option value="LABORATORY">LABORATORY</option><option value="LABORATORY (DENTAL)">LABORATORY (DENTAL)</option><option value="LAND SURVEYOR">LAND SURVEYOR</option><option value="LANDSCAPE ARCHITECT">LANDSCAPE ARCHITECT</option><option value="LAUNDRY FACILITY">LAUNDRY FACILITY</option><option value="LAUNDRY-SELF SERVICE OR AUTOMATIC">LAUNDRY-SELF SERVICE OR AUTOMATIC</option><option value="LAWN/YARD MAINTENANCE w/o LANDSCAPING">LAWN/YARD MAINTENANCE w/o LANDSCAPING</option><option value="LIMOSINES WITH DRIVERS">LIMOSINES WITH DRIVERS</option><option value="LOAN & FINANCE CO.-CHAPTER 537">LOAN & FINANCE CO.-CHAPTER 537</option><option value="LOAN OR FINANCE COMPANY - CHAPTER 520">LOAN OR FINANCE COMPANY - CHAPTER 520</option><option value="LOAN OR FINANCE COMPANY CHAPTER 560">LOAN OR FINANCE COMPANY CHAPTER 560</option><option value="MANUFACTURER'S REPRESENTATIVE">MANUFACTURER'S REPRESENTATIVE</option><option value="MANUFACTURING - BOAT BUILDING">MANUFACTURING - BOAT BUILDING</option><option value="MANUFACTURING NOT LISTED SEPARATELY">MANUFACTURING NOT LISTED SEPARATELY</option><option value="MANUFACTURING-CABINETS">MANUFACTURING-CABINETS</option><option value="MANUFACTURING-CHEMICALS">MANUFACTURING-CHEMICALS</option><option value="MANUFACTURING-CLAY/CONCRETE ORNAMENT, ET">MANUFACTURING-CLAY/CONCRETE ORNAMENT, ET</option><option value="MANUFACTURING-CLOTHING">MANUFACTURING-CLOTHING</option><option value="MANUFACTURING-COSMETICS">MANUFACTURING-COSMETICS</option><option value="MANUFACTURING-DEVICES (MEDICAL)">MANUFACTURING-DEVICES (MEDICAL)</option><option value="MANUFACTURING-ELECTRICAL & ELECTRONICS">MANUFACTURING-ELECTRICAL & ELECTRONICS</option><option value="MANUFACTURING-FOOD PRODUCTS">MANUFACTURING-FOOD PRODUCTS</option><option value="MANUFACTURING-FOUNDRY & MACHINE SHOP">MANUFACTURING-FOUNDRY & MACHINE SHOP</option><option value="MANUFACTURING-ICE">MANUFACTURING-ICE</option><option value="MANUFACTURING-JEWELRY & CRAFTS">MANUFACTURING-JEWELRY & CRAFTS</option><option value="MANUFACTURING-MARBLE & GRANITE">MANUFACTURING-MARBLE & GRANITE</option><option value="MANUFACTURING-METAL & IRON">MANUFACTURING-METAL & IRON</option><option value="MANUFACTURING-NEON & MAGNETIC SIGNS">MANUFACTURING-NEON & MAGNETIC SIGNS</option><option value="MANUFACTURING-PRINTING/COMMERCIAL & JOB">MANUFACTURING-PRINTING/COMMERCIAL & JOB</option><option value="MANUFACTURING-READY MIX CONCRETE">MANUFACTURING-READY MIX CONCRETE</option><option value="MANUFACTURING-SAWMILL">MANUFACTURING-SAWMILL</option><option value="MANUFACTURING-SILK/CUT FLORAL ARRAN ONLY">MANUFACTURING-SILK/CUT FLORAL ARRAN ONLY</option><option value="MANUFACTURING-WOOD PRODUCTS">MANUFACTURING-WOOD PRODUCTS</option><option value="MARKETING SERVICES">MARKETING SERVICES</option><option value="MARRIAGE/FAMILY THERAPIST">MARRIAGE/FAMILY THERAPIST</option><option value="MASSAGE THERAPIST">MASSAGE THERAPIST</option><option value="MASSAGE THERAPIST BEFORE 94-95">MASSAGE THERAPIST BEFORE 94-95</option><option value="MECHANICAL CAR WASH">MECHANICAL CAR WASH</option><option value="MENTAL HEALTH COUNSELOR">MENTAL HEALTH COUNSELOR</option><option value="MICROFILMING - NOT PHOTOGRAPHER">MICROFILMING - NOT PHOTOGRAPHER</option><option value="MOBILE FOOD DISPENSING VEHICLE - CANTEEN VEHICLES">MOBILE FOOD DISPENSING VEHICLE - CANTEEN VEHICLES</option><option value="MOBILE HOME SALES">MOBILE HOME SALES</option><option value="MOBILE REPAIR FOR AUTOS">MOBILE REPAIR FOR AUTOS</option><option value="MONEY TRANSFERS">MONEY TRANSFERS</option><option value="MORTGAGE OR LOAN-BROKER">MORTGAGE OR LOAN-BROKER</option><option value="MORTGAGE OR LOAN-SOLICITOR/AGENT">MORTGAGE OR LOAN-SOLICITOR/AGENT</option><option value="MOTOR VEHICLE SALES (NEW)">MOTOR VEHICLE SALES (NEW)</option><option value="MOTORCYCLE SALES, REPAIRS OR RENTAL">MOTORCYCLE SALES, REPAIRS OR RENTAL</option><option value="MOVERS">MOVERS</option><option value="MUSIC SCHOOL">MUSIC SCHOOL</option><option value="NAIL SHOP">NAIL SHOP</option><option value="NEWSPAPER - 6 OR MORE WEEKLY EDITIONS">NEWSPAPER - 6 OR MORE WEEKLY EDITIONS</option><option value="NEWSPAPER/MAGAZINE 5 OR FEWER EDITIONS WKLY">NEWSPAPER/MAGAZINE 5 OR FEWER EDITIONS WKLY</option><option value="NOTARY PUBLIC">NOTARY PUBLIC</option><option value="NURSE OR NURSE PRACTIONER">NURSE OR NURSE PRACTIONER</option><option value="NURSERY SCHOOL AND/OR CHILD DAYCARE">NURSERY SCHOOL AND/OR CHILD DAYCARE</option><option value="NURSERY-SHRUBS,TREES & PLANTS">NURSERY-SHRUBS,TREES & PLANTS</option><option value="OCCUPATIONAL THERAPIST">OCCUPATIONAL THERAPIST</option><option value="OPTICIAN">OPTICIAN</option><option value="OPTOMETRIST">OPTOMETRIST</option><option value="ORTHOTIST">ORTHOTIST</option><option value="OSTEOPATHIC PHYSICIAN">OSTEOPATHIC PHYSICIAN</option><option value="PAWNSHOP OR SECOND HAND DEALER">PAWNSHOP OR SECOND HAND DEALER</option><option value="PEDDLER-FOOD CART">PEDDLER-FOOD CART</option><option value="PET SITTING/WALKING">PET SITTING/WALKING</option><option value="PHOTO/FILM DEVELOPER - NOT PHOTOGRAPHER">PHOTO/FILM DEVELOPER - NOT PHOTOGRAPHER</option><option value="PHOTOGRAPHER">PHOTOGRAPHER</option><option value="PHYSICAL OR SPEECH THERAPY">PHYSICAL OR SPEECH THERAPY</option><option value="PHYSICIAN/SURGEON MD">PHYSICIAN/SURGEON MD</option><option value="PODIATRIST">PODIATRIST</option><option value="PRIVATE DETECTIVE & INVESTIGATIONS AGENCY">PRIVATE DETECTIVE & INVESTIGATIONS AGENCY</option><option value="PROFESSIONAL HOME INSPECTOR">PROFESSIONAL HOME INSPECTOR</option><option value="PROFESSIONAL NOT OTHERWISE LICENSED">PROFESSIONAL NOT OTHERWISE LICENSED</option><option value="PROFESSIONAL WRITER">PROFESSIONAL WRITER</option><option value="PROFESSIONAL-ACUPUNCTURE">PROFESSIONAL-ACUPUNCTURE</option><option value="PROFESSIONAL-ARTIST">PROFESSIONAL-ARTIST</option><option value="PROFESSIONAL-ATHLETIC TRAINER">PROFESSIONAL-ATHLETIC TRAINER</option><option value="PROFESSIONAL-CHEMIST">PROFESSIONAL-CHEMIST</option><option value="PROFESSIONALS-2 OR MORE">PROFESSIONALS-2 OR MORE</option><option value="PROMOTER">PROMOTER</option><option value="PSYCHIATRIST">PSYCHIATRIST</option><option value="PSYCHOLOGIST">PSYCHOLOGIST</option><option value="PUBLISHER">PUBLISHER</option><option value="PUBLISHER'S AGENT">PUBLISHER'S AGENT</option><option value="RADIO/TV CABLE BROADCASTING">RADIO/TV CABLE BROADCASTING</option><option value="RADIO/TV STATION">RADIO/TV STATION</option><option value="RAILROAD COMPANY">RAILROAD COMPANY</option><option value="REAL ESTATE APPRAISER">REAL ESTATE APPRAISER</option><option value="REAL ESTATE BROKER">REAL ESTATE BROKER</option><option value="REAL ESTATE BROKER-BRANCH OFFICE">REAL ESTATE BROKER-BRANCH OFFICE</option><option value="REAL ESTATE SALESPERSON">REAL ESTATE SALESPERSON</option><option value="RECORDING STUDIO">RECORDING STUDIO</option><option value="RENTAL/LEASING-HEAVY EQUIPMENT">RENTAL/LEASING-HEAVY EQUIPMENT</option><option value="RENTALS AND LEASING - NOT HOUSING OR EQUIPMENT">RENTALS AND LEASING - NOT HOUSING OR EQUIPMENT</option><option value="RENTALS/LEASING - INCIDENTAL SERVICE">RENTALS/LEASING - INCIDENTAL SERVICE</option><option value="RENTALS/LEASING-PORTABLE TOILETS">RENTALS/LEASING-PORTABLE TOILETS</option><option value="RENTALS/LEASING-SANITARY CONTAINERS">RENTALS/LEASING-SANITARY CONTAINERS</option><option value="REPAIRS NOT REQUIRING STATE LICENSE">REPAIRS NOT REQUIRING STATE LICENSE</option><option value="RESTAURANT">RESTAURANT</option><option value="RETAIL BAKERY - PLANT ON PREMISES">RETAIL BAKERY - PLANT ON PREMISES</option><option value="RETAIL MERCHANT">RETAIL MERCHANT</option><option value="RETAIL MERCHANT WITH PHARMACY">RETAIL MERCHANT WITH PHARMACY</option><option value="RINKS AND PARKS">RINKS AND PARKS</option><option value="SAND, DIRT, ROCK OR SHELL DEALER">SAND, DIRT, ROCK OR SHELL DEALER</option><option value="SANITARIUM, NURSING HOME, ETC.">SANITARIUM, NURSING HOME, ETC.</option><option value="SCHOOL NOT OTHERWISE LISTED">SCHOOL NOT OTHERWISE LISTED</option><option value="SCHOOL-AIRCRAFT">SCHOOL-AIRCRAFT</option><option value="SCHOOL-COSMETOLOGY">SCHOOL-COSMETOLOGY</option><option value="SCHOOL-DANCING">SCHOOL-DANCING</option><option value="SCHOOL-KARATE/JUDO">SCHOOL-KARATE/JUDO</option><option value="SCHOOL-PRIVATE">SCHOOL-PRIVATE</option><option value="SECOND HAND DEALER">SECOND HAND DEALER</option><option value="SECURITIES DEALER - 1 PERSON">SECURITIES DEALER - 1 PERSON</option><option value="SECURITIES DEALERS - 2 OR MORE PEOPLE">SECURITIES DEALERS - 2 OR MORE PEOPLE</option><option value="SECURITIES SALES REPRESENTATIVE">SECURITIES SALES REPRESENTATIVE</option><option value="SERVICE-OTHER">SERVICE-OTHER</option><option value="SHOOTING GALLERY">SHOOTING GALLERY</option><option value="STENOGRAPHER, TYPIST, COURT REPORTER">STENOGRAPHER, TYPIST, COURT REPORTER</option><option value="STORAGE WAREHOUSE OR LOT">STORAGE WAREHOUSE OR LOT</option><option value="SWIMMING POOL">SWIMMING POOL</option><option value="TAILOR">TAILOR</option><option value="TATTOO/PERM MAKEUP ARTIST">TATTOO/PERM MAKEUP ARTIST</option><option value="TAXIS, VANS WITH DRIVERS">TAXIS, VANS WITH DRIVERS</option>
                     <option value="TELEPHONE ANSWERING SERVICE">TELEPHONE ANSWERING SERVICE</option><option value="TELEPHONE COMPANY">TELEPHONE COMPANY</option><option value="THEATER SEATING 1000 OR MORE">THEATER SEATING 1000 OR MORE</option><option value="TICKET OFFICE">TICKET OFFICE</option><option value="TRAILER RENTALS FOR TOWING">TRAILER RENTALS FOR TOWING</option><option value="TRAILER/MOBILE HOME CAMPS OR PARKS">TRAILER/MOBILE HOME CAMPS OR PARKS</option><option value="TRAVEL AGENCY">TRAVEL AGENCY</option><option value="TREE SERVICE-TRIMMING & PRUNING ONLY">TREE SERVICE-TRIMMING & PRUNING ONLY</option><option value="TREE SERVICE-UNLIMITED">TREE SERVICE-UNLIMITED</option><option value="TV STUDIO">TV STUDIO</option><option value="UPHOLSTERY SHOP">UPHOLSTERY SHOP</option><option value="USED CAR SALES">USED CAR SALES</option><option value="VETERINARIAN">VETERINARIAN</option><option value="WATCHMAN, GUARD OR PATROL AGENCY">WATCHMAN, GUARD OR PATROL AGENCY</option><option value="WEB SERVICES INCL DESIGN">WEB SERVICES INCL DESIGN</option><option value="WHOLESALE BAKERY SALES - NO PLANT">WHOLESALE BAKERY SALES - NO PLANT</option><option value="WHOLESALE MERCHANT">WHOLESALE MERCHANT</option><option value="WHOLESALE SALES FROM VEHICLE">WHOLESALE SALES FROM VEHICLE</option><option value="WRECKER SERVICE">WRECKER SERVICE</option><option value="WRECKER STORAGE YARD - NO RETAIL SALES">WRECKER STORAGE YARD - NO RETAIL SALES</option>
+                    </optgroup>
                 </select>
 
                 <div class="wraplist">
@@ -50,133 +64,16 @@
             </section>
             <div class="line"></div>
             <section class="population">
-                <article>Population Density</article>
+                <article>Boundary</article>
                 <div class="span">
-                    <img class="age ageicon" src='../static/img/ic_add.svg' width="20">
-                    <span class="age">Age</span>
-                    <select class="agespan list" style="display: none" onChange="onAgeChange(this)">
-                        <option value="age_under_5">Under 5 years</option>
-                        <option value="age_5_9">5 to 9 years</option>
-                        <option value="age_10_14">10 to 14 years</option>
-                        <option value="age_15_19">15 to 19 years</option>
-                        <option value="age_20_24">20 to 24 years</option>
-                        <option value="age_25_34">25 to 34 years</option>
-                        <option value="age_35_44">35 to 44 years</option>
-                        <option value="age_45_54">45 to 54 years</option>
-                        <option value="age_55_59">55 to 59 years</option>
-                        <option value="age_60_64">60 to 64 years</option>
-                        <option value="age_65_74">65 to 74 years</option>
-                        <option value="age_75_84">75 to 84 years</option>
-                        <option value="age_over_85">85 years and over</option>
-                    </select>
+                    <input type="checkbox" name="city" id="city" title="Gainesville" onclick='showCityBorder(this);'/>
+                    <label for="city">Gainesville</label><br>
+                    <input type="checkbox" name="neighbour" id="neighbour" title="Neighbourhood" onclick='showNeighbourhoodBorder(this);'/>
+                    <label for="neighbour">Neighbourhood</label><br>
                 </div>
-                <div  class="span">
-                    <img class="genders gendersicon" src='../static/img/ic_add.svg' width="20">
-                    <span class="genders">Gender</span>
-                    <div class="wrap wrap--gender gendersspan" style='display: none;'>
-                        <div onClick="onMaleClick()">
-                            <div class="btn--circle btn--male"><img class="icon icon--male" src="../static/img/male.png"></div>
-                            <div class="subtext text--male">Male</div>
-                        </div>
-                        <div>
-                            <div class="btn--circle btn--female"><img class="icon icon--female" src="../static/img/female.png"></div>
-                            <div class="subtext text--female">Female</div>
-                        </div>
-                        <div>
-                            <div class="btn--circle btn--both"><img class="icon icon--both" src="../static/img/both.png"></div>
-                            <div class="subtext text--both">Other</div>
-                        </div>
-                    </div>
-                </div>
-                <div  class="span">
-                    <img class="gender gendericon" src='../static/img/ic_add.svg' width="20">
-                    <span class=gender >Occupation</span>
-                    <select class="genderspan list" style="display: none">
-                        <option value="industry_agriculture">Agriculture, forestry, fishing and hunting, and mining</option>
-                        <option value="industry_construction">Construction</option>
-                        <option value="industry_manufacturing">Manufacturing</option>
-                        <option value="industry_wholesale">Wholesale trade</option>
-                        <option value="industry_retail">Retail trade</option>
-                        <option value="industry_transportion">Transportation and warehousing, and utilities</option>
-                        <option value="industry_information">Information</option>
-                        <option value="industry_financial">Finance, insurance, real estate, and rental and leasing</option>
-                        <option value="industry_professional">Professional, scientific, management, administrative, and waste management services</option>
-                        <option value="industry_social">Educational, health and social services</option>
-                        <option value="industry_arts">Arts, entertainment, recreation, accommodation and food services</option>
-                        <option value="industry_other">Other services (except public administration)</option>
-                        <option value="industry_public">Public administration</option>
-                    </select>
-                </div>
-                <div  class="span">
-                    <img class="education educationicon"src='../static/img/ic_add.svg' width="20">
-                    <span class="education">Education level</span>
-                    <select class="educationspan list" style="display: none">
-                        <option value="edu_9th_grade">Less than 9th grade</option>
-                        <option value="edu_12th_grade">9th to 12th grade, no diploma</option>
-                        <option value="edu_high_school">High school graduate (includes equivalency)</option>
-                        <option value="edu_college">Some college, no degree</option>
-                        <option value="edu_associate">Associate degree</option>
-                        <option value="edu_bachelors">Bachelor's degree</option>
-                        <option value="edu_graduate">Graduate or professional degree</option>
-                    </select>
-                </div>
-                <div  class="span">
-                    <img class="national nationalicon" src='../static/img/ic_add.svg' width="20">
-                    <span class="national">Nationality</span>
-                    <select class="nationalspan list" style="display: none">
-                        <option value="">A</option>
-                        <option value="">A</option>
-                        <option value="">A</option>
-                    </select>
-                </div>
+                
             </section>
-            <div class="line"></div>
-            <section class="zone">
-                <article>
-                    <span>Zoning</span>
-                </article>
-                <select class="zoning" onchange="showZone(this)">
-                    <option value="AC/A">AC/A</option>
-                    <option value="AC/R-2A">AC/R-2A</option>
-                    <option value="AC/RE-1">AC/RE-1</option>
-                    <option value="AF">Airport Facility</option>
-                    <option value="AGR">Agriculture</option>
-                    <option value="Automotive-Oriented Business">Automotive-Oriented Business</option>
-                    <option value="Business Industrial">Business Industrial</option>
-                    <option value="Tourist-Oriented Business">Tourist-Oriented Business</option>
-                    <option value="BUS">General Business District</option>
-                    <option value="CCD">Central City District</option>
-                    <option value="CON">Conservation</option>
-                    <option value="CP">Corporate Park</option>
-                    <option value="ED">Educational Services</option>
-                    <option value="I-1">Limited Industrial</option>
-                    <option value="I-2">General Industrial</option>
-                    <option value="MD">Medical Services</option>
-                    <option value="MH">Mobile Home Residential</option>
-                    <option value="MU-1">Mixed Use Low Intensity</option>
-                    <option value="MU-2">Mixed Use Medium Intensity</option>
-                    <option value="OF">General Office</option>
-                    <option value="OR">Office Residential</option>
-                    <option value="PD">Planned Development</option>
-                    <option value="PS">Public Services and Operations</option>
-                    <option value="RC">Residential Conservation</option>
-                    <option value="RH-1">RH-1 Residential High Density</option>
-                    <option value="RH-2">RH-2 Residential High Density</option>
-                    <option value="RMF-5">RMF-5 Single-Family/Multiple-Family Residential</option>
-                    <option value="RMF-6">RMF-6 Multiple-Family Residential</option>
-                    <option value="RMF-7">RMF-7 Multiple-Family Residential</option>
-                    <option value="RMF-8">RMF-8 Multiple-Family Residential</option>
-                    <option value="RMU">Residential Mixed Use</option>
-                    <option value="ROW">ROW</option>
-                    <option value="RSF-1">RSF-1 Single-Family Residential</option>
-                    <option value="RSF-2">RSF-2 Single-Family Residential</option>
-                    <option value="RSF-3">RSF-3 Single-Family Residential</option>
-                    <option value="RSF-4">RSF-4 Single-Family Residential</option>
-                    <option value="UMU-1">UMU-1 Urban Mixed-Use</option>
-                    <option value="UMU-2">UMU-2 Urban Mixed-Use</option>
-                    <option value="W">Warehousing and Wholesaling</option>
-                </select>
-            </section>
+            
         </section>
 
         <section id="rightpanel">
