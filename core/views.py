@@ -14,7 +14,7 @@ def get_new_businesses(request):
         b=[]
         for t in bus_type_list:
             if t == 'all':
-                b = NewBusiness.objects.all()
+                b = NewBusiness.objects.all().order_by('category')
                 break
             else:     
                 b.extend(NewBusiness.objects.filter(category=t))
