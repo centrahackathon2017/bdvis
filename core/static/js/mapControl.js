@@ -138,314 +138,310 @@ function onBusinessChange(event){
 /*--------------------------------------
 RIGHT PANEL
 ---------------------------------------*/
-var ageChart = new Chart($('#ageChart'),{
-    type: 'pie',
-    data: {
-      labels: [
-        "Below 18",
-        "18-40",
-        "40-65",
-        "65 Plus"
-      ],
-      datasets: [
-        {
-            data: [300, 50, 100,20],
-            backgroundColor: [
-                "#FF6384",
-                "#36A2EB",
-                "#FFCE56"
-            ],
-            hoverBackgroundColor: [
-                "#FF6384",
-                "#36A2EB",
-                "#FFCE56"
-            ]
-      }]
-    },
-    options:{
-        responsive: false,
-        legend: {
-            labels:{
-              boxWidth: 30,
-              usePointStyle: true
-            }
-        }
-    }
-});
+queryDetail('pharmacy');
 
-var genderChart = new Chart($('#genderChart'),{
-    type: 'pie',
-    data: {
-      labels: [
-        "Male",
-        "Female"
-      ],
-      datasets: [
-        {
-            data: [50, 100],
-            backgroundColor: [
-                "#36A2EB",
-                "#FFCE56"
-            ],
-            hoverBackgroundColor: [
-                "#36A2EB",
-                "#FFCE56"
-            ]
-      }]
-    },
-    options:{
-        responsive: false,
-        legend: {
-            labels:{
-              boxWidth: 30,
-              usePointStyle: true
-            }
+function queryDetail(type){
+    $.ajax({
+        url: '/api/get_new_businesses',
+        type: 'get',
+        data: {business_type:type},
+        cache: false,
+        dataType: "json",
+        success:  function(result){
+            showDetail(result.output[0])
+        },
+        error:function(xhr,status){
+            console.log('QUERY DETAIL ERROR: '+status);
         }
-    }
-});
+    });
+}
 
-var employmentChart = new Chart($('#employmentChart'),{
-    type: 'pie',
-    data: {
-      labels: [
-        "Industrial",
-        "Service related",
-        "Commercial"
-      ],
-      datasets: [
-        {
-            data: [300, 50, 100],
-            backgroundColor: [
-                "#FF6384",
-                "#36A2EB",
-                "#FFCE56"
-            ],
-            hoverBackgroundColor: [
-                "#FF6384",
-                "#36A2EB",
-                "#FFCE56"
-            ]
-      }]
-    },
-    options:{
-        responsive: false,
-        legend: {
-            labels:{
-              boxWidth: 30,
-              usePointStyle: true
-            }
-        }
-    }
-});
+function showDetail(data){
+    $('.rightheader').text(data.company_name)
+    $('#address').text(data.address)
+    $('#city').text(data.city)
+    $('#state').text(data.state)
+    $('#zipcode').text(data.zipcode)
+    $('#latitude').text(data.latitude)
+    $('#longitude').text(data.longitude)
+    // console.log(data)
 
-var peopleChart = new Chart($('#peopleChart'),{
-    type: 'bar',
-    data: {
-        labels: ["White", "Black", "Ameri es", "Asian", "Hawn pi", "Mult race", "Hispanic", "White nh", "Other"],
-        datasets: [{
-            label: '# of Votes',
-            data: [12, 19, 3, 5, 2, 3,5,7,9],
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)',
-                'rgba(86, 244, 66, 0.2)',
-                'rgba(244, 176, 66, 0.2)',
-                'rgba(65, 91, 244, 0.2)'
-            ],
-            borderColor: [
-                'rgba(255,99,132,1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)',
-                'rgba(86, 244, 66, 1)',
-                'rgba(244, 176, 66, 1)',
-                'rgba(65, 91, 244, 1)'
-            ],
-            borderWidth: 1
-        }]
-    },
-    options: {
-        scales: {
-            yAxes: [{
-                ticks: {
-                    beginAtZero:true
+    var employmentChart = new Chart($('#employmentChart'),{
+        type: 'pie',
+        data: {
+          labels: [
+            "Industrial",
+            "Service related",
+            "Commercial"
+          ],
+          datasets: [
+            {
+                data: [data.indu_emp, data.serv_emp, data.comm_emp],
+                backgroundColor: [
+                    "#FF6384",
+                    "#36A2EB",
+                    "#FFCE56"
+                ],
+                hoverBackgroundColor: [
+                    "#FF6384",
+                    "#36A2EB",
+                    "#FFCE56"
+                ]
+          }]
+        },
+        options:{
+            responsive: false,
+            legend: {
+                labels:{
+                  boxWidth: 30,
+                  usePointStyle: true
                 }
+            }
+        }
+    });
+
+    var genderChart = new Chart($('#genderChart'),{
+        type: 'pie',
+        data: {
+          labels: [
+            "Male",
+            "Female"
+          ],
+          datasets: [
+            {
+                data: [data.male, data.female],
+                backgroundColor: [
+                    "#36A2EB",
+                    "#FFCE56"
+                ],
+                hoverBackgroundColor: [
+                    "#36A2EB",
+                    "#FFCE56"
+                ]
+          }]
+        },
+        options:{
+            responsive: false,
+            legend: {
+                labels:{
+                  boxWidth: 30,
+                  usePointStyle: true
+                }
+            }
+        }
+    });
+
+    var ageChart = new Chart($('#ageChart'),{
+        type: 'pie',
+        data: {
+          labels: [
+            "Below 18",
+            "18-40",
+            "40-65",
+            "65 Plus"
+          ],
+          datasets: [
+            {
+                data: [data.age_below_18, data.age_18_40, data.age_40_65, data.age_65_plus],
+                backgroundColor: [
+                    "#FF6384",
+                    "#36A2EB",
+                    "#FFCE56"
+                ],
+                hoverBackgroundColor: [
+                    "#FF6384",
+                    "#36A2EB",
+                    "#FFCE56"
+                ]
+          }]
+        },
+        options:{
+            responsive: false,
+            legend: {
+                labels:{
+                  boxWidth: 30,
+                  usePointStyle: true
+                }
+            }
+        }
+    });
+
+     var educationChart = new Chart($('#educationChart'), {
+        data: {
+          datasets: [{
+            data: [
+                data.percent_bachelor_degree,
+                data.percent_poverty
+            ],
+            backgroundColor: [
+                "#FF6384",
+                "#4BC0C0"
+            ],
+            label: 'My dataset' // for legend
+            }],
+            labels: [
+                "Bachelor degree",
+                "Poverty"
+            ]
+        },
+        type: 'polarArea',
+        options:{
+            responsive: false,
+            legend: {
+                labels:{
+                  boxWidth: 30,
+                  usePointStyle: true
+                }
+            }
+        }
+    });
+
+    var transportChart = new Chart($('#transportChart'),{
+        type: 'bar',
+        data: {
+            labels: ["Car", "Moto", "Bike", "Pub", "Walk", "Home", "Other"],
+            datasets: [{
+                data: [data.tran_car, data.tran_moto, data.tran_bike, data.tran_pub, data.tran_walk, data.tran_home, data.tran_other],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)',
+                    'rgba(86, 244, 66, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255,99,132,1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)',
+                    'rgba(86, 244, 66, 1)'
+                ],
+                borderWidth: 1
             }]
         },
-        responsive: false,
-        legend: {
-            display: false
-        }
-    }
-});
-
-var revenueChart = new Chart($('#revenueChart'),{
-    type: 'bar',
-    data: {
-        labels: ["120k 24k", "125k 29k", "130k 34k", "135k 39k", "140k 44k", "145k 49k", "150k 59k", "160k 74k", "175k 99k", "1100k 124k", "1125k 149k"],
-        datasets: [{
-            label: '# of Votes',
-            data: [12, 19, 3, 5, 2, 3,5,7,9,10,8],
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)',
-                'rgba(86, 244, 66, 0.2)',
-                'rgba(244, 176, 66, 0.2)',
-                'rgba(65, 91, 244, 0.2)',
-                'rgba(244, 65, 88, 0.2)',
-                'rgba(187, 65, 244, 0.2)'
-            ],
-            borderColor: [
-                'rgba(255,99,132,1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)',
-                'rgba(86, 244, 66, 1)',
-                'rgba(244, 176, 66, 1)',
-                'rgba(65, 91, 244, 1)',
-                'rgba(244, 65, 88, 1)',
-                'rgba(187, 65, 244, 1)'
-            ],
-            borderWidth: 1
-        }]
-    },
-    options: {
-        scales: {
-            yAxes: [{
-                ticks: {
-                    beginAtZero:true
-                }
-            }]
-        },
-        responsive: false,
-        legend: {
-            display: false
-        }
-    }
-});
-
-var transportChart = new Chart($('#transportChart'),{
-    type: 'bar',
-    data: {
-        labels: ["Car", "Moto", "Bike", "Pub", "Walk", "Home", "Other"],
-        datasets: [{
-            label: '# of Votes',
-            data: [12, 19, 3, 5, 2, 3,5],
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)',
-                'rgba(86, 244, 66, 0.2)'
-            ],
-            borderColor: [
-                'rgba(255,99,132,1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)',
-                'rgba(86, 244, 66, 1)'
-            ],
-            borderWidth: 1
-        }]
-    },
-    options: {
-        scales: {
-            yAxes: [{
-                ticks: {
-                    beginAtZero:true
-                }
-            }]
-        },
-        responsive: false,
-        legend: {
-            display: false
-        }
-    }
-});
-
-var educationChart = new Chart($('#educationChart'), {
-    data: {
-      datasets: [{
-        data: [
-            11,
-            16
-        ],
-        backgroundColor: [
-            "#FF6384",
-            "#4BC0C0"
-        ],
-        label: 'My dataset' // for legend
-        }],
-        labels: [
-            "Red",
-            "Green"
-        ]
-    },
-    type: 'polarArea',
-    options:{
-        responsive: false,
-        legend: {
-            labels:{
-              boxWidth: 30,
-              usePointStyle: true
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero:true
+                    }
+                }]
+            },
+            responsive: false,
+            legend: {
+                display: false
             }
         }
-    }
-});
+    });
 
-// var myDoughnutChart = new Chart($('#lineChart'), {
-//     type: 'line',
-//     data: {
-//       labels: ["January", "February", "March", "April", "May", "June", "July"],
-//       datasets: [
-//         {
-//             label: "My First dataset",
-//             fill: false,
-//             lineTension: 0.1,
-//             backgroundColor: "rgba(75,192,192,0.4)",
-//             borderColor: "rgba(75,192,192,1)",
-//             borderCapStyle: 'butt',
-//             borderDash: [],
-//             borderDashOffset: 0.0,
-//             borderJoinStyle: 'miter',
-//             pointBorderColor: "rgba(75,192,192,1)",
-//             pointBackgroundColor: "#fff",
-//             pointBorderWidth: 1,
-//             pointHoverRadius: 5,
-//             pointHoverBackgroundColor: "rgba(75,192,192,1)",
-//             pointHoverBorderColor: "rgba(220,220,220,1)",
-//             pointHoverBorderWidth: 2,
-//             pointRadius: 1,
-//             pointHitRadius: 10,
-//             data: [65, 59, 80, 81, 56, 55, 40],
-//             spanGaps: false,
-//         }
-//     ]
-//     },
-//     options:{
-//         responsive: false,
-//         legend: {
-//             display: false
-//         }
-//     }
-// });
+    var peopleChart = new Chart($('#peopleChart'),{
+        type: 'bar',
+        data: {
+            labels: ["White", "Black", "Ameri es", "Asian", "Hawn pi", "Mult race", "Hispanic", "White nh", "Other"],
+            datasets: [{
+                data: [data.white, data.black, data.ameri_es, data.asian, data.hawn_pi, data.mult_race, data.hispanic, data.white_nh, data.other],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)',
+                    'rgba(86, 244, 66, 0.2)',
+                    'rgba(244, 176, 66, 0.2)',
+                    'rgba(65, 91, 244, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255,99,132,1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)',
+                    'rgba(86, 244, 66, 1)',
+                    'rgba(244, 176, 66, 1)',
+                    'rgba(65, 91, 244, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero:true
+                    }
+                }]
+            },
+            responsive: false,
+            legend: {
+                display: false
+            }
+        }
+    });
 
+    var revenueChart = new Chart($('#revenueChart'),{
+        type: 'bar',
+        data: {
+            labels: ["10k-14k","15k-19k","20k-24k", "25k-29k", "30k-34k", "35k-39k", "40k-44k", "45k-49k", "50k-59k", "60k-74k", "75k-99k", "100k-124k", "125k-149k","150k-199k","200k Plus"],
+            datasets: [{
+                data: [data.i10k_14k, data.i15k_19k, data.i20k_24k, data.i25k_29k, data.i30k_34k, data.i35k_39k,data.i40k_44k,data.i45k_49k,data.i50k_59k,data.i60k_i74k,data.i75k_99k,data.i100k_124k,data.i125k_149k,data.i150k_199k,data.i200kmore],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)',
+                    'rgba(86, 244, 66, 0.2)',
+                    'rgba(244, 176, 66, 0.2)',
+                    'rgba(65, 91, 244, 0.2)',
+                    'rgba(244, 65, 88, 0.2)',
+                    'rgba(187, 65, 244, 0.2)',
+                    'rgba(244, 176, 66, 0.2)',
+                    'rgba(65, 91, 244, 0.2)',
+                    'rgba(244, 65, 88, 0.2)',
+                    'rgba(187, 65, 244, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255,99,132,1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)',
+                    'rgba(86, 244, 66, 1)',
+                    'rgba(244, 176, 66, 1)',
+                    'rgba(65, 91, 244, 1)',
+                    'rgba(244, 65, 88, 1)',
+                    'rgba(187, 65, 244, 1)',
+                    'rgba(244, 176, 66, 1)',
+                    'rgba(65, 91, 244, 1)',
+                    'rgba(244, 65, 88, 1)',
+                    'rgba(187, 65, 244, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero:true
+                    }
+                }]
+            },
+            responsive: false,
+            legend: {
+                display: false
+            }
+        }
+    });
+}
 
 
 // ------------------------------------

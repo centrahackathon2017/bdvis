@@ -133,14 +133,15 @@ article{
 
 .detail{
     display: flex;
-    text-align: right;
     margin-bottom: 15px;
 }
 .column1{
+    text-align: right;
     width: 40%;
 }
-column2{
+.column2{
     width: 60%;
+    margin-left: 5px;
 }
 .line{
     width: 90%;
