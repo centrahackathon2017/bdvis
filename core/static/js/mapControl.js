@@ -484,7 +484,7 @@ function closeChips(id){
       }
       restaurants = [];
       restaurantCnt = 0;
-      
+
   } //end if ALL
 
 }
@@ -1365,7 +1365,7 @@ function showCityBorder(event){
     console.log('city : ' +event.checked);
     if(event.checked){
         cityLayer = new google.maps.KmlLayer({
-          url: 'http://centrahack01.acis.ufl.edu/static/kml/CITY.kmz',
+          url: 'http://centrahack01.acis.ufl.edu/static/kml/CITY.kml',
           map: map
         });
     }else{
