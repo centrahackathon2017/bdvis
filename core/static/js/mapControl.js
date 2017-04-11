@@ -1365,8 +1365,8 @@ function showCityBorder(event){
     console.log('city : ' +event.checked);
     if(event.checked){
         cityLayer = new google.maps.KmlLayer({
-          //url: 'http://centrahack01.acis.ufl.edu/static/kml/CITY2.kmz',
-          url: 'http://lima-vc-1.sdsc.optiputer.net/project/CITY2.kmz',
+          //url: 'http://centrahack01.acis.ufl.edu/static/kml/CITY.kmz',
+          url: 'http://lima-vc-1.sdsc.optiputer.net/project/CITY3.kmz',
           map: map
         });
     }else{
@@ -1382,8 +1382,8 @@ function showNeighbourhoodBorder(event){
     console.log('Neighbourhood : ' +event.checked);
     if(event.checked){
         neighbourhoodLayer = new google.maps.KmlLayer({
-          //url: 'http://centrahack01.acis.ufl.edu/static/kml/cenacs_2014_selection.kmz',
-          url: 'http://lima-vc-1.sdsc.optiputer.net/project/cenacs_2014_selection.kmz',
+          //url: 'http://centrahack01.acis.ufl.edu/static/kml/NEIGHBORHOODS.kmz',
+          url: 'http://lima-vc-1.sdsc.optiputer.net/project/NEIGHBORHOODS3.kmz',
           map: map
         });
     }else{
