@@ -159,9 +159,9 @@ function onMaleClick(){
 
 
 
-function closeChips(event){
-  console.log('kkkk')
-  $('#'+event).remove()
+function closeChips(id){
+  console.log(id)
+  $('#'+id).remove()
 }
 
 var all = false;
@@ -172,14 +172,14 @@ function onBusinessChange(event){
     queryBusinessData('all');
     all = true
     $('.wraplist').html('');
-    $('.wraplist').prepend('<div id='+bid+' class="chip"><span class="chiptext">ALL</span><img class="chipicon" src="../static/img/ic_clear_white.svg" onClick="closeChips('+event.value+')"/></div>');
+    $('.wraplist').prepend('<div id='+event.value+' class="chip"><span class="chiptext">ALL</span><img class="chipicon" src="../static/img/ic_clear_white.svg" onClick="closeChips(\''+event.value+'\')"/></div>');
   }else{
     queryBusinessData(event.value);
     if(all==true){
        $('.wraplist').html('');
        all = false;
     }
-    $('.wraplist').prepend('<div id='+bid+' class="chip"><span class="chiptext">'+event.value+'</span><img class="chipicon" src="../static/img/ic_clear_white.svg" onClick="closeChips('+bid+')"/></div>');
+    $('.wraplist').prepend('<div id='+event.value+' class="chip"><span class="chiptext">'+event.value+'</span><img class="chipicon" src="../static/img/ic_clear_white.svg" onClick="closeChips(\''+event.value+'\')"/></div>');
     bid++;
   }
 }
