@@ -189,7 +189,7 @@ input[name="business"]{
     height: 80px;
     width: 100%;
     padding: 15px;
-    padding-bottom: 25px;
+    padding-bottom: 40px;
     position: relative;
     color: #555554;
 }
@@ -220,11 +220,11 @@ input[name="business"]{
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 46px;
-    height: 46px;
-    border-radius: 24px;
+    width: 56px;
+    height: 56px;
+    border-radius: 30px;
     border: 1px solid #D7D5D5;
-    margin: 5px 3px 0px 3px;
+    margin: 5px 6px 0px 6px;
 }
 .btn--circle:hover{
     border: 1px solid #80cbc4;
@@ -251,7 +251,7 @@ input[name="business"]{
 }
 .subtext{
     text-align: center;
-    font-size: 6pt;
+    font-size: 8pt;
     color: #D7D5D5;
 }
 .toggle{
