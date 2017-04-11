@@ -532,6 +532,14 @@ RIGHT PANEL
 //     });
 // }
 
+var employmentChart = null
+var genderChart = null
+var ageChart = null
+var educationChart = null
+var transportChart = null
+var peopleChart = null
+var revenueChart = null
+
 function showDetail(data){
     $('.detaillabel').hide()
     $('.detaildata').show()
@@ -544,7 +552,18 @@ function showDetail(data){
     $('#longitude').text(data.longitude)
     console.log(data)
 
-    var employmentChart = new Chart($('#employmentChart'),{
+    if(genderChart!=null){
+        employmentChart.destroy()
+        genderChart.destroy()
+        ageChart.destroy()
+        educationChart.destroy()
+        transportChart.destroy()
+        peopleChart.destroy()
+        revenueChart.destroy()
+    }
+    
+
+    employmentChart = new Chart($('#employmentChart'),{
         type: 'pie',
         data: {
           labels: [
@@ -578,7 +597,7 @@ function showDetail(data){
         }
     });
 
-    var genderChart = new Chart($('#genderChart'),{
+    genderChart = new Chart($('#genderChart'),{
         type: 'pie',
         data: {
           labels: [
@@ -609,7 +628,7 @@ function showDetail(data){
         }
     });
 
-    var ageChart = new Chart($('#ageChart'),{
+    ageChart = new Chart($('#ageChart'),{
         type: 'pie',
         data: {
           labels: [
@@ -644,7 +663,7 @@ function showDetail(data){
         }
     });
 
-     var educationChart = new Chart($('#educationChart'), {
+    educationChart = new Chart($('#educationChart'), {
         data: {
           datasets: [{
             data: [
@@ -674,7 +693,7 @@ function showDetail(data){
         }
     });
 
-    var transportChart = new Chart($('#transportChart'),{
+    transportChart = new Chart($('#transportChart'),{
         type: 'bar',
         data: {
             labels: ["Car", "Moto", "Bike", "Pub", "Walk", "Home", "Other"],
@@ -716,7 +735,7 @@ function showDetail(data){
         }
     });
 
-    var peopleChart = new Chart($('#peopleChart'),{
+    peopleChart = new Chart($('#peopleChart'),{
         type: 'bar',
         data: {
             labels: ["White", "Black", "Ameri es", "Asian", "Hawn pi", "Mult race", "Hispanic", "White nh", "Other"],
@@ -762,7 +781,7 @@ function showDetail(data){
         }
     });
 
-    var revenueChart = new Chart($('#revenueChart'),{
+    revenueChart = new Chart($('#revenueChart'),{
         type: 'bar',
         data: {
             labels: ["10k-14k","15k-19k","20k-24k", "25k-29k", "30k-34k", "35k-39k", "40k-44k", "45k-49k", "50k-59k", "60k-74k", "75k-99k", "100k-124k", "125k-149k","150k-199k","200k Plus"],
