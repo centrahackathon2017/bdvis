@@ -43,9 +43,9 @@ var churches = [];
 var schools = [];
 var fitnesses = [];
 var nightlifes = [];
-var geroceries = [];
+var groceries = [];
 var restaurants = [];
-var cinemaCnt=0, bankCnt=0, pharmacyCnt = 0, churchCnt = 0, schoolCnt=0, fitnessCnt=0, nightlifeCnt=0, geroceryCnt=0, restaurantCnt=0;
+var cinemaCnt=0, bankCnt=0, pharmacyCnt = 0, churchCnt = 0, schoolCnt=0, fitnessCnt=0, nightlifeCnt=0, groceryCnt=0, restaurantCnt=0;
 
 function queryBusinessData(name){
     $.ajax({
@@ -255,10 +255,10 @@ function queryBusinessData(name){
                       showDetail(this.data);
                   });
                   nightlifeCnt++;
-              }else if(cat=='gerocery'){
+              }else if(cat== 'grocery'){
                   image = "../static/img/shop.png";
                   
-                  geroceries[geroceryCnt] = new google.maps.Marker({
+                  groceries[groceryCnt] = new google.maps.Marker({
                     position: location,
                     map: map,
                     icon: image,
@@ -268,18 +268,18 @@ function queryBusinessData(name){
                   });
 
 
-                  google.maps.event.addListener(geroceries[geroceryCnt], 'mouseover', function() {
+                  google.maps.event.addListener(groceries[groceryCnt], 'mouseover', function() {
                       this.info.open(map,this);
                   });
 
-                  google.maps.event.addListener(geroceries[geroceryCnt], 'mouseout', function() {
+                  google.maps.event.addListener(groceries[groceryCnt], 'mouseout', function() {
                       this.info.close();
                   });    
 
-                  google.maps.event.addListener(geroceries[geroceryCnt], 'click', function() {
+                  google.maps.event.addListener(groceries[groceryCnt], 'click', function() {
                       showDetail(this.data);
                   });
-                  geroceryCnt++;
+                  groceryCnt++;
               }else if(cat=='restaurant'){
                   image = "../static/img/restaurant.png";
                   
@@ -356,6 +356,137 @@ function onMaleClick(){
 function closeChips(id){
   console.log(id)
   $('#'+id).remove()
+  if(id=='bank'){
+    for(var i=0;i<bankCnt;i++){
+      banks[i].setMap(null);
+      banks[i] = null;
+    }
+    banks = [];
+    bankCnt = 0;
+  }else if(id=='church'){
+    for(var i=0;i<churchCnt;i++){
+      churches[i].setMap(null);
+      churches[i] = null;
+    }
+    churches = [];
+    churchCnt = 0;
+  }else if(id=='cinema'){
+    for(var i=0;i<cinemaCnt;i++){
+      cinemas[i].setMap(null);
+      cinemas[i] = null;
+    }
+    cinemas = [];
+    cinemaCnt = 0;
+  }else if(id=='school'){
+    for(var i=0;i<schoolCnt;i++){
+      schools[i].setMap(null);
+      schools[i] = null;
+    }
+    schools = [];
+    schoolCnt = 0;
+  }else if(id=='fitness'){
+    for(var i=0;i<fitnessCnt;i++){
+      fitnesses[i].setMap(null);
+      fitnesses[i] = null;
+    }
+    fitnesses = [];
+    fitnessCnt = 0;
+  }else if(id=='grocery'){
+    for(var i=0;i<groceryCnt;i++){
+      groceries[i].setMap(null);
+      groceries[i] = null;
+    }
+    groceries = [];
+    groceryCnt = 0;
+  }else if(id=='nightlife'){
+    for(var i=0;i<nightlifeCnt;i++){
+      nightlifes[i].setMap(null);
+      nightlifes[i] = null;
+    }
+    nightlifes = [];
+    nightlifeCnt = 0;
+  }else if(id=='pharmacy'){
+    for(var i=0;i<pharmacyCnt;i++){
+      pharmacies[i].setMap(null);
+      pharmacies[i] = null;
+    }
+    pharmacies = [];
+    pharmacyCnt = 0;
+  }else if(id=='restaurant'){
+    for(var i=0;i<restaurantCnt;i++){
+      restaurants[i].setMap(null);
+      restaurants[i] = null;
+    }
+    restaurants = [];
+    restaurantCnt = 0;
+  }else if(id=='ALL'){
+
+
+      for(var i=0;i<bankCnt;i++){
+        banks[i].setMap(null);
+        banks[i] = null;
+      }
+      banks = [];
+      bankCnt = 0;
+    
+      for(var i=0;i<churchCnt;i++){
+        churches[i].setMap(null);
+        churches[i] = null;
+      }
+      churches = [];
+      churchCnt = 0;
+    
+      for(var i=0;i<cinemaCnt;i++){
+        cinemas[i].setMap(null);
+        cinemas[i] = null;
+      }
+      cinemas = [];
+      cinemaCnt = 0;
+    
+      for(var i=0;i<schoolCnt;i++){
+        schools[i].setMap(null);
+        schools[i] = null;
+      }
+      schools = [];
+      schoolCnt = 0;
+    
+      for(var i=0;i<fitnessCnt;i++){
+        fitnesses[i].setMap(null);
+        fitnesses[i] = null;
+      }
+      fitnesses = [];
+      fitnessCnt = 0;
+    
+      for(var i=0;i<groceryCnt;i++){
+        groceries[i].setMap(null);
+        groceries[i] = null;
+      }
+      groceries = [];
+      groceryCnt = 0;
+    
+      for(var i=0;i<nightlifeCnt;i++){
+        nightlifes[i].setMap(null);
+        nightlifes[i] = null;
+      }
+      nightlifes = [];
+      nightlifeCnt = 0;
+    
+      for(var i=0;i<pharmacyCnt;i++){
+        pharmacies[i].setMap(null);
+        pharmacies[i] = null;
+      }
+      pharmacies = [];
+      pharmacyCnt = 0;
+
+      for(var i=0;i<restaurantCnt;i++){
+        restaurants[i].setMap(null);
+        restaurants[i] = null;
+      }
+      restaurants = [];
+      restaurantCnt = 0;
+      
+  } //end if ALL
+
 }
 
 var all = false;
@@ -1234,7 +1365,7 @@ function showCityBorder(event){
     console.log('city : ' +event.checked);
     if(event.checked){
         cityLayer = new google.maps.KmlLayer({
-          url: '../static/kml/CITY.kmz',
+          url: 'http://centrahack01.acis.ufl.edu/static/kml/CITY.kmz',
           map: map
         });
     }else{
@@ -1250,7 +1381,7 @@ function showNeighbourhoodBorder(event){
     console.log('Neighbourhood : ' +event.checked);
     if(event.checked){
         neighbourhoodLayer = new google.maps.KmlLayer({
-          url: '../static/kml/NEIGHBORHOODS.kmz',
+          url: 'http://centrahack01.acis.ufl.edu/static/kml/NEIGHBORHOODS.kmz',
           map: map
         });
     }else{
