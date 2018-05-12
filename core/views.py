@@ -1,11 +1,19 @@
 from django.shortcuts import render
 from django.http import JsonResponse, HttpResponse
-from models import Business, Poi, Parking, Zone, Population, NewBusiness
+from .models import Business, Poi, Parking, Zone, Population, NewBusiness
 
 
 def index(request):
     context = {}
     return render(request, "index.html", context)
+
+def get_business_prediction(request):
+  if request.method == 'GET':
+    lat = request.GET.getlist('lat')
+    lng = request.GET.getlist('lng')
+    return JsonResponse({"output": 70})
+  else:
+    return None
 
 def get_new_businesses(request):
     

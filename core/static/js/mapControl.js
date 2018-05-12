@@ -1,4 +1,4 @@
-
+var BDVISService = new service();
 
 var mapOptions = {
   zoom: 11,
@@ -8,6 +8,30 @@ var mapOptions = {
 }
 var markerBusiness = []
 var map = new google.maps.Map(document.getElementById('map'), mapOptions);
+
+
+var infowindow = null;
+map.addListener('click', function(e) {
+  if (infowindow) {
+    infowindow.close();
+  }
+
+  infowindow = new google.maps.InfoWindow({
+    content: 'loading...',
+    position: e.latLng
+  });
+  infowindow.open(map);
+
+  BDVISService.getBusinessPrediction(e.latLng.lat(), e.latLng.lng(), function (data) {
+    var color = (data >= 60) ? 'success' : 'danger';
+    var content = '<div>N/A</div>';
+
+    if (data !== null) {
+      var content = "<div class='info-container'><div class='circle " + color + "'></div><div class='info-content'>success: " + data +"%</div><div>";
+    }
+    infowindow.setContent(content);
+  });
+});
 
 
 var dataBusiness = []
