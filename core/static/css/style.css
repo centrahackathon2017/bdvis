@@ -1,3 +1,15 @@
+.label {
+  position: absolute;
+  color: #00BFA5;
+  z-index: 2;
+  top: 40px;
+  font-size: 12px;
+  font-weight: bold;
+
+  left: 50%;
+  transform: translateX(-50%);
+}
+
 .circle {
   display: inline-block;
   width: 14px;

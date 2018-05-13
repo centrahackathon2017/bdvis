@@ -24,9 +24,9 @@ map.addListener('click', function(e) {
 
   BDVISService.getBusinessPrediction(e.latLng.lat(), e.latLng.lng(), function (data) {
     var color = (data >= 60) ? 'success' : 'danger';
-    var content = '<div>N/A</div>';
+    var content = "<div class='info-container'><div class='circle'></div><div class='info-content'>success: unknown</div>";
 
-    if (data !== null) {
+    if (data !== null && data !== 'Unknown') {
       var content = "<div class='info-container'><div class='circle " + color + "'></div><div class='info-content'>success: " + data +"%</div><div>";
     }
     infowindow.setContent(content);

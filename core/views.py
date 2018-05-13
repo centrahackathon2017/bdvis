@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import JsonResponse, HttpResponse
 from .models import Business, Poi, Parking, Zone, Population, NewBusiness
-
+from utils.Calculate import predict
 
 def index(request):
     context = {}
@@ -11,7 +11,9 @@ def get_business_prediction(request):
   if request.method == 'GET':
     lat = request.GET.getlist('lat')
     lng = request.GET.getlist('lng')
-    return JsonResponse({"output": 70})
+    success = predict(lat, lng)
+    return JsonResponse({"output": success})
+    # return JsonResponse({"output": 80})
   else:
     return None
 
